@@ -1,1220 +1,845 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fan Fungi — Naturaleza que transforma</title>
-  <meta name="description" content="Hongos medicinales y aceites naturales para energía, enfoque, estrés y defensa. Envío gratis a todo el país."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brisa Carbone — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  <style>
-    :root {
-      --verde-profundo: #0d2218;
-      --verde-medio: #1a3d2b;
-      --verde-claro: #2a5c40;
-      --dorado: #c9a84c;
-      --dorado-claro: #e8c97a;
-      --crema: #f5f0e4;
-      --crema-oscura: #e8dfc8;
-      --texto-claro: #d4c9b0;
-      --texto-medio: #8fa88b;
-      --blanco: #fdfaf5;
-      --rojo: #e05454;
-    }
+  :root {
+    --ink:     #0A0906;
+    --cream:   #F2EDE4;
+    --gold:    #B8965A;
+    --gold-lt: #D4B07A;
+    --warm:    #1C1812;
+    --mist:    #8A8070;
+    --slide-w: 1280px;
+    --slide-h: 720px;
+  }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Jost', sans-serif; background: var(--verde-profundo); color: var(--crema); overflow-x: hidden; }
+  html { font-size: 16px; background: #111; }
 
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 9998; opacity: 0.6;
-    }
+  body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    background: #111;
+    color: var(--cream);
+    overflow-x: hidden;
+  }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 4rem;
-      background: rgba(13, 34, 24, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
-      transition: padding 0.3s;
-    }
+  /* ── NAV ── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(10,9,6,.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184,150,90,.15);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 400; letter-spacing: .12em;
+    color: var(--gold);
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--mist); text-decoration: none;
+    transition: color .3s;
+  }
+  .nav-links a:hover { color: var(--gold-lt); }
+  .nav-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    border: 1px solid var(--gold); margin: auto;
+  }
 
-    .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-logo img { height: 40px; width: auto; }
+  /* ── SLIDES ── */
+  .slide {
+    width: 100%; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 100px 6vw 60px;
+  }
 
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
-    .nav-links a {
-      text-decoration: none; color: var(--texto-claro);
-      font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover { color: var(--dorado); }
+  /* ── SLIDE 1 · COVER ── */
+  .slide-cover {
+    background: var(--ink);
+    flex-direction: column;
+    text-align: center;
+  }
+  .slide-cover::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 40%, rgba(184,150,90,.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(184,150,90,.05) 0%, transparent 60%);
+  }
+  .cover-rule {
+    width: 1px; height: 80px; background: var(--gold); margin: 0 auto 32px;
+    animation: growY .8s ease forwards;
+  }
+  .cover-eyebrow {
+    font-size: .65rem; letter-spacing: .35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 28px;
+  }
+  .cover-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300; line-height: 1.0;
+    color: var(--cream); letter-spacing: .02em;
+  }
+  .cover-name em {
+    font-style: italic; color: var(--gold-lt);
+  }
+  .cover-tagline {
+    margin-top: 32px; font-size: .75rem; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--mist);
+  }
+  .cover-tagline span { color: var(--gold); margin: 0 12px; }
+  .cover-bottom {
+    position: absolute; bottom: 40px; left: 0; right: 0;
+    display: flex; justify-content: center; gap: 48px;
+  }
+  .cover-stat { text-align: center; }
+  .cover-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; color: var(--gold); display: block;
+  }
+  .cover-stat-label {
+    font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--mist); margin-top: 4px; display: block;
+  }
+  .cover-yr {
+    position: absolute; bottom: 40px; right: 6vw;
+    font-size: .65rem; letter-spacing: .2em; color: var(--mist);
+  }
 
-    .nav-cart {
-      position: relative; cursor: pointer;
-      background: none; border: 1px solid rgba(201, 168, 76, 0.3);
-      color: var(--texto-claro); padding: 0.55rem 1.2rem;
-      font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
-      font-family: 'Jost', sans-serif; cursor: pointer;
-      transition: border-color 0.3s, color 0.3s;
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .nav-cart:hover { border-color: var(--dorado); color: var(--dorado); }
+  /* ── SLIDE 2 · ABOUT ── */
+  .slide-about {
+    background: var(--warm);
+    gap: 8vw;
+  }
+  .slide-about::after {
+    content: '';
+    position: absolute; top: 0; right: 0; bottom: 0;
+    width: 42%;
+    background: linear-gradient(135deg, transparent 30%, rgba(184,150,90,.06) 100%);
+    pointer-events: none;
+  }
+  .about-left { flex: 1; max-width: 480px; }
+  .about-right { flex: 1; max-width: 440px; }
+  .section-label {
+    font-size: .6rem; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 14px;
+    margin-bottom: 32px;
+  }
+  .section-label::after {
+    content: ''; flex: 1; max-width: 48px; height: 1px;
+    background: var(--gold); opacity: .5;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--cream); margin-bottom: 28px;
+  }
+  .section-title em { font-style: italic; color: var(--gold-lt); }
+  .body-text {
+    font-size: .9rem; line-height: 1.9; color: #A09880;
+    margin-bottom: 24px;
+  }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .pill {
+    font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+    padding: 8px 18px; border: 1px solid rgba(184,150,90,.35);
+    color: var(--gold-lt); border-radius: 100px;
+  }
+  .gold-divider {
+    width: 48px; height: 1px; background: var(--gold); margin: 32px 0;
+  }
+  .contact-line {
+    display: flex; align-items: center; gap: 14px;
+    font-size: .78rem; color: var(--mist); margin-bottom: 14px;
+  }
+  .contact-line strong { color: var(--cream); }
+  .contact-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
 
-    .cart-badge {
-      background: var(--dorado); color: var(--verde-profundo);
-      font-size: 0.65rem; font-weight: 700;
-      min-width: 18px; height: 18px; border-radius: 50%;
-      display: none; align-items: center; justify-content: center;
-      line-height: 1;
-    }
-    .cart-badge.visible { display: flex; }
+  /* ── SLIDE 3 · SERVICES ── */
+  .slide-services {
+    background: var(--ink);
+    flex-direction: column; gap: 52px;
+  }
+  .slide-services::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(184,150,90,.025) 0px, rgba(184,150,90,.025) 1px,
+      transparent 1px, transparent 120px
+    );
+  }
+  .services-header { text-align: center; width: 100%; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; width: 100%; max-width: 1100px;
+  }
+  .service-card {
+    background: rgba(255,255,255,.025);
+    border: 1px solid rgba(184,150,90,.12);
+    padding: 40px 28px;
+    position: relative; overflow: hidden;
+    transition: background .35s;
+  }
+  .service-card:hover { background: rgba(184,150,90,.06); }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: center;
+    transition: transform .4s ease;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; color: rgba(184,150,90,.12);
+    line-height: 1; margin-bottom: 20px; font-weight: 300;
+  }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; color: var(--cream); margin-bottom: 14px;
+    font-weight: 400;
+  }
+  .service-desc {
+    font-size: .75rem; line-height: 1.8; color: var(--mist);
+  }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden; padding: 8rem 2rem 4rem; text-align: center;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(42,92,64,.35) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,.08) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(26,61,43,.4) 0%, transparent 60%);
-    }
-    .hero-ring {
-      position: absolute; border-radius: 50%;
-      border: 1px solid rgba(201,168,76,.1); pointer-events: none;
-    }
-    .hr1 { width:600px; height:600px; top:50%; left:50%; transform:translate(-50%,-50%); animation: rp 6s ease-in-out infinite; }
-    .hr2 { width:900px; height:900px; top:50%; left:50%; transform:translate(-50%,-50%); animation: rp 6s ease-in-out infinite 1s; }
-    .hr3 { width:1200px; height:1200px; top:50%; left:50%; transform:translate(-50%,-50%); animation: rp 6s ease-in-out infinite 2s; }
-    @keyframes rp {
-      0%,100% { opacity:.4; transform:translate(-50%,-50%) scale(1); }
-      50% { opacity:.9; transform:translate(-50%,-50%) scale(1.02); }
-    }
-    .hero-content { position: relative; max-width: 780px; animation: fadeUp 1.2s ease forwards; }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+  /* ── SLIDE 4/5/6 · CASE STUDY ── */
+  .slide-case {
+    background: var(--warm);
+    gap: 0;
+    padding: 100px 0 60px;
+    flex-direction: column;
+  }
+  .case-header {
+    width: 100%; padding: 0 6vw;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 48px;
+  }
+  .case-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; color: rgba(184,150,90,.1);
+    font-weight: 300; line-height: 1;
+  }
+  .case-body {
+    width: 100%; padding: 0 6vw;
+    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1px; background: rgba(184,150,90,.12);
+  }
+  .case-block {
+    background: var(--warm);
+    padding: 36px 32px;
+  }
+  .case-block-label {
+    font-size: .6rem; letter-spacing: .25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+  }
+  .case-block-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; color: var(--cream); margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .case-block-text {
+    font-size: .78rem; line-height: 1.8; color: var(--mist);
+  }
+  .result-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; color: var(--gold-lt); display: block;
+    font-weight: 300; line-height: 1;
+  }
+  .result-sub {
+    font-size: .65rem; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--mist); display: block; margin-top: 8px;
+  }
+  .case-footer {
+    width: 100%; padding: 24px 6vw 0;
+    display: flex; align-items: center; gap: 12px;
+    border-top: 1px solid rgba(184,150,90,.12); margin-top: 1px;
+  }
+  .case-industry-tag {
+    font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+    padding: 6px 14px; border: 1px solid rgba(184,150,90,.3);
+    color: var(--mist); border-radius: 100px;
+  }
 
-    .hero-eyebrow {
-      display: inline-block; font-size: 0.7rem; letter-spacing: 0.25em;
-      text-transform: uppercase; color: var(--dorado);
-      margin-bottom: 1.5rem; padding: 0.4rem 1.2rem;
-      border: 1px solid rgba(201,168,76,.3);
-    }
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif; font-weight: 300;
-      font-size: clamp(3.5rem, 8vw, 7rem); line-height: 1.0; color: var(--blanco);
-    }
-    .hero h1 em { font-style: italic; color: var(--dorado-claro); }
-    .hero-sub {
-      font-family: 'Cormorant Garamond', serif; font-size: clamp(1rem,2.5vw,1.4rem);
-      font-weight: 300; color: var(--texto-claro);
-      margin: 1.5rem auto 2.8rem; max-width: 520px; line-height: 1.7;
-    }
-    .hero-buttons { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+  /* ── SLIDE 7 · TOOLS ── */
+  .slide-tools {
+    background: var(--ink);
+    flex-direction: column; gap: 52px;
+  }
+  .tools-grid {
+    display: flex; flex-wrap: wrap; gap: 2px; max-width: 900px;
+    justify-content: center;
+  }
+  .tool-chip {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 24px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(184,150,90,.15);
+    font-size: .72rem; letter-spacing: .12em; color: var(--mist);
+    transition: all .3s;
+  }
+  .tool-chip:hover {
+    background: rgba(184,150,90,.06);
+    border-color: rgba(184,150,90,.4); color: var(--cream);
+  }
+  .tool-icon {
+    width: 18px; height: 18px;
+    border: 1px solid rgba(184,150,90,.4); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tool-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
 
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      background: var(--dorado); color: var(--verde-profundo);
-      text-decoration: none; font-weight: 600; font-size: 0.82rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 1rem 2.2rem; border: none; cursor: pointer;
-      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-      font-family: 'Jost', sans-serif;
-    }
-    .btn-primary:hover { background: var(--dorado-claro); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,.3); }
+  /* ── SLIDE 8 · METRICS ── */
+  .slide-metrics {
+    background: linear-gradient(145deg, #0C0A07 0%, #12100C 50%, #0A0906 100%);
+    flex-direction: column; gap: 60px;
+  }
+  .metrics-row {
+    display: flex; gap: 0;
+    border: 1px solid rgba(184,150,90,.15);
+    max-width: 1000px; width: 100%;
+  }
+  .metric-item {
+    flex: 1; padding: 48px 36px;
+    border-right: 1px solid rgba(184,150,90,.12);
+    text-align: center; position: relative;
+  }
+  .metric-item:last-child { border-right: none; }
+  .metric-item::after {
+    content: '';
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 40px; height: 2px; background: var(--gold);
+  }
+  .metric-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.6rem; font-weight: 300;
+    color: var(--cream); display: block; line-height: 1;
+  }
+  .metric-value em {
+    color: var(--gold); font-style: normal; font-size: 2rem;
+  }
+  .metric-label {
+    font-size: .6rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--mist); display: block; margin-top: 12px;
+  }
+  .industries-row {
+    display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  }
+  .industry-badge {
+    font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+    padding: 8px 20px;
+    background: rgba(184,150,90,.08);
+    border: 1px solid rgba(184,150,90,.25);
+    color: var(--gold-lt); border-radius: 100px;
+  }
 
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      background: transparent; color: var(--crema);
-      text-decoration: none; font-size: 0.82rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 1rem 2.2rem; border: 1px solid rgba(245,240,228,.3);
-      cursor: pointer; font-family: 'Jost', sans-serif;
-      transition: border-color 0.3s, color 0.3s;
-    }
-    .btn-secondary:hover { border-color: var(--dorado); color: var(--dorado); }
+  /* ── SLIDE 9 · TESTIMONIALS ── */
+  .slide-testimonials {
+    background: var(--warm);
+    flex-direction: column; gap: 52px;
+  }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; max-width: 1100px; width: 100%;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,.02);
+    border: 1px solid rgba(184,150,90,.1);
+    padding: 36px 28px;
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 6rem; color: rgba(184,150,90,.15);
+    position: absolute; top: -8px; left: 20px;
+    line-height: 1;
+  }
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; font-style: italic;
+    line-height: 1.7; color: var(--cream);
+    margin-bottom: 28px; position: relative;
+  }
+  .testimonial-rule { width: 28px; height: 1px; background: var(--gold); margin-bottom: 16px; }
+  .testimonial-name {
+    font-size: .72rem; color: var(--cream); font-weight: 500; letter-spacing: .06em;
+  }
+  .testimonial-role {
+    font-size: .65rem; color: var(--mist); margin-top: 4px;
+  }
+  .stars { color: var(--gold); font-size: .8rem; letter-spacing: 3px; margin-bottom: 16px; }
 
-    /* ── BENEFITS ── */
-    .benefits { background: var(--verde-claro); padding: 2rem; }
-    .benefits-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; text-align: center;
-    }
-    .benefit { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-    .benefit-icon { font-size: 1.6rem; }
-    .benefit-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--blanco); }
-    .benefit-text { font-size: 0.75rem; color: rgba(245,240,228,.6); }
+  /* ── SLIDE 10 · CONTACT ── */
+  .slide-contact {
+    background: var(--ink);
+    flex-direction: column;
+    text-align: center;
+  }
+  .slide-contact::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 60%, rgba(184,150,90,.07) 0%, transparent 70%);
+  }
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--cream); max-width: 640px;
+    margin: 24px auto;
+  }
+  .contact-title em { font-style: italic; color: var(--gold-lt); }
+  .contact-grid {
+    display: flex; gap: 48px; justify-content: center;
+    margin: 40px 0; flex-wrap: wrap;
+  }
+  .contact-item { text-align: center; }
+  .contact-item-label {
+    font-size: .55rem; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--mist); display: block; margin-bottom: 8px;
+  }
+  .contact-item-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; color: var(--cream);
+  }
+  .closing-line {
+    font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold); margin-top: 48px;
+  }
+  .closing-line::before, .closing-line::after {
+    content: '◈'; margin: 0 16px; opacity: .5;
+  }
 
-    /* ── SECTION HELPERS ── */
-    section { padding: 6rem 2rem; }
-    .section-label { font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--dorado); margin-bottom: 1rem; display: block; }
-    .section-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2rem,4vw,3.2rem); line-height: 1.15; color: var(--blanco); }
-    .section-title em { font-style: italic; color: var(--dorado-claro); }
+  /* ── ANIMATIONS ── */
+  @keyframes growY { from { height: 0; } to { height: 80px; } }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .animate { animation: fadeUp .7s ease both; }
+  .d1 { animation-delay: .1s; } .d2 { animation-delay: .25s; }
+  .d3 { animation-delay: .4s; } .d4 { animation-delay: .55s; }
 
-    /* ── CATEGORÍAS ── */
-    .categorias { background: var(--verde-medio); }
-    .categorias-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
-    .categorias-grid {
-      display: grid; grid-template-columns: repeat(4,1fr);
-      gap: 1.5px; margin-top: 3rem;
-      border: 1px solid rgba(201,168,76,.15);
-    }
-    .cat-card {
-      background: var(--verde-profundo);
-      padding: 2.5rem 1.5rem; cursor: pointer;
-      text-decoration: none; display: flex; flex-direction: column;
-      align-items: center; gap: 1.2rem;
-      transition: background 0.4s;
-      position: relative; overflow: hidden;
-    }
-    .cat-card::after {
-      content:''; position:absolute; bottom:0; left:0; right:0;
-      height:2px; background:var(--dorado);
-      transform:scaleX(0); transition:transform 0.4s;
-    }
-    .cat-card:hover { background: rgba(42,92,64,.4); }
-    .cat-card:hover::after { transform: scaleX(1); }
-    .cat-icon { font-size: 2.5rem; }
-    .cat-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--blanco); }
-    .cat-desc { font-size: 0.78rem; color: var(--texto-medio); line-height: 1.6; }
+  /* ── SLIDE COUNTER ── */
+  .counter {
+    position: fixed; bottom: 28px; right: 32px; z-index: 100;
+    font-size: .6rem; letter-spacing: .2em; color: var(--mist);
+  }
 
-    /* ── PRODUCTOS ── */
-    #productos { background: var(--verde-profundo); }
-    .productos-inner { max-width: 1200px; margin: 0 auto; }
-    .productos-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+  /* ── PRINT / EXPORT ── */
+  @media print {
+    .nav, .counter, .print-btn { display: none !important; }
+    html, body { background: white !important; }
+    .slide { page-break-after: always; min-height: 100vh; }
+  }
 
-    .productos-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
-      gap: 1.5px; background: rgba(201,168,76,.08);
-    }
-
-    .prod-card {
-      background: var(--verde-profundo);
-      display: flex; flex-direction: column;
-      position: relative; overflow: hidden;
-      transition: transform 0.3s;
-    }
-    .prod-card:hover { transform: translateY(-4px); z-index: 1; }
-
-    .prod-img-wrap {
-      aspect-ratio: 1; overflow: hidden;
-      background: linear-gradient(135deg, rgba(26,61,43,.6), rgba(42,92,64,.3));
-      display: flex; align-items: center; justify-content: center; position: relative;
-    }
-    .prod-img-placeholder { font-size: 5rem; opacity: 0.4; }
-    .prod-badge {
-      position: absolute; top: 1rem; left: 1rem;
-      background: var(--dorado); color: var(--verde-profundo);
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; padding: 0.3rem 0.7rem;
-    }
-    .prod-envio {
-      position: absolute; top: 1rem; right: 1rem;
-      background: rgba(13,34,24,.85); color: var(--texto-medio);
-      font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 0.3rem 0.6rem; border: 1px solid rgba(201,168,76,.2);
-    }
-    .prod-info {
-      padding: 1.5rem; flex: 1;
-      display: flex; flex-direction: column; gap: 0.5rem;
-      border-top: 1px solid rgba(201,168,76,.08);
-    }
-    .prod-categoria { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dorado); }
-    .prod-nombre { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--blanco); line-height: 1.3; }
-    .prod-precios { display: flex; align-items: baseline; gap: 0.8rem; margin-top: auto; padding-top: 0.8rem; }
-    .prod-precio-actual { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--dorado-claro); }
-    .prod-precio-tachado { font-size: 0.85rem; color: var(--texto-medio); text-decoration: line-through; }
-
-    .btn-agregar {
-      margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-      background: transparent; border: 1px solid rgba(201,168,76,.25);
-      color: var(--texto-claro); font-size: 0.72rem;
-      font-family: 'Jost', sans-serif; letter-spacing: 0.15em;
-      text-transform: uppercase; padding: 0.8rem;
-      cursor: pointer; width: 100%;
-      transition: background 0.3s, border-color 0.3s, color 0.3s;
-    }
-    .btn-agregar:hover { background: var(--dorado); border-color: var(--dorado); color: var(--verde-profundo); }
-    .btn-agregar.added { background: var(--verde-claro); border-color: var(--verde-claro); color: var(--blanco); }
-
-    /* ── COMBOS ── */
-    .combos { background: var(--verde-medio); }
-    .combos-inner { max-width: 1000px; margin: 0 auto; }
-    .combo-row {
-      background: linear-gradient(135deg, var(--verde-profundo), rgba(42,92,64,.3));
-      border: 1px solid rgba(201,168,76,.2);
-      padding: 2.5rem; display: grid; grid-template-columns: 1fr auto;
-      gap: 2rem; align-items: center; margin-bottom: 1.5px;
-      transition: border-color 0.3s;
-    }
-    .combo-row:hover { border-color: rgba(201,168,76,.5); }
-    .combo-nombre { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--blanco); margin-bottom: 0.5rem; }
-    .combo-desc { color: var(--texto-claro); font-size: 0.85rem; line-height: 1.7; margin-bottom: 1rem; }
-    .combo-right { text-align: right; white-space: nowrap; display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
-    .combo-precio { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--dorado-claro); }
-    .combo-antes { font-size: 0.85rem; color: var(--texto-medio); text-decoration: line-through; }
-    .combo-ahorro { background: var(--dorado); color: var(--verde-profundo); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.8rem; }
-
-    /* ── NOSOTROS ── */
-    .nosotros { background: var(--verde-profundo); }
-    .nosotros-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-    .nosotros-frame {
-      aspect-ratio: 4/5;
-      background: linear-gradient(135deg, var(--verde-medio), var(--verde-claro));
-      border: 1px solid rgba(201,168,76,.2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 8rem; opacity: 0.7; position: relative;
-    }
-    .nosotros-frame::before { content:''; position:absolute; inset:20px; border:1px solid rgba(201,168,76,.15); }
-    .nosotros-badge {
-      position:absolute; bottom:-1.5rem; right:-1.5rem;
-      background:var(--dorado); color:var(--verde-profundo);
-      width:110px; height:110px; border-radius:50%;
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      font-family:'Cormorant Garamond',serif; font-size:0.75rem; font-weight:600;
-      text-align:center; padding:1rem; line-height:1.3;
-    }
-    .nosotros-visual { position: relative; }
-    .nosotros-text p { color: var(--texto-claro); line-height: 1.9; font-size: 0.9rem; margin-bottom: 1.2rem; }
-    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
-    .feature-list li { display: flex; align-items: center; gap: 1rem; font-size: 0.85rem; color: var(--texto-claro); }
-    .feature-list li::before { content:''; display:block; width:20px; height:1px; background:var(--dorado); flex-shrink:0; }
-
-    /* ── TESTIMONIOS ── */
-    .testimonios { background: var(--verde-medio); }
-    .testimonios-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
-    .test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: rgba(201,168,76,.08); margin-top: 3rem; }
-    .test-card { background: var(--verde-profundo); padding: 2.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
-    .test-stars { color: var(--dorado); font-size: 0.9rem; letter-spacing: 0.1em; }
-    .test-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--blanco); line-height: 1.7; flex: 1; }
-    .test-author { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dorado); }
-
-    /* ── FAQ ── */
-    .faq { background: var(--verde-profundo); }
-    .faq-inner { max-width: 760px; margin: 0 auto; text-align: center; }
-    .faq-list { display: flex; flex-direction: column; gap: 1.5px; background: rgba(201,168,76,.08); margin-top: 3rem; text-align: left; }
-    details { background: var(--verde-profundo); }
-    details summary {
-      padding: 1.5rem; cursor: pointer; list-style: none;
-      font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--blanco);
-      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-      user-select: none;
-    }
-    details summary .faq-icon { color: var(--dorado); font-size: 1.2rem; flex-shrink: 0; }
-    details p { padding: 0 1.5rem 1.5rem; color: var(--texto-claro); font-size: 0.88rem; line-height: 1.8; }
-
-    /* ── NEWSLETTER ── */
-    .newsletter { background: var(--verde-claro); text-align: center; }
-    .newsletter-inner { max-width: 560px; margin: 0 auto; }
-    .newsletter p { color: var(--texto-claro); font-size: 0.88rem; line-height: 1.7; margin-top: 1rem; }
-    .newsletter-form { display: flex; margin-top: 2rem; border: 1px solid rgba(201,168,76,.3); }
-    .newsletter-form input {
-      flex: 1; background: rgba(13,34,24,.5); border: none;
-      padding: 1rem 1.5rem; color: var(--crema);
-      font-family: 'Jost', sans-serif; font-size: 0.85rem; outline: none;
-    }
-    .newsletter-form input::placeholder { color: var(--texto-medio); }
-    .newsletter-form button {
-      background: var(--dorado); border: none; color: var(--verde-profundo);
-      font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase; padding: 1rem 2rem;
-      cursor: pointer; transition: background 0.3s;
-    }
-    .newsletter-form button:hover { background: var(--dorado-claro); }
-    .newsletter-legal { font-size: 0.7rem; color: var(--texto-medio); margin-top: 1rem; }
-
-    /* ── FOOTER ── */
-    footer { background: rgba(8,20,14,.95); padding: 4rem 2rem 2rem; border-top: 1px solid rgba(201,168,76,.1); }
-    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-    .footer-brand img { height: 38px; margin-bottom: 1.2rem; }
-    .footer-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: var(--texto-claro); line-height: 1.7; margin-bottom: 1.5rem; }
-    .footer-social { display: flex; gap: 1rem; }
-    .social-link { width:36px; height:36px; border:1px solid rgba(201,168,76,.25); display:flex; align-items:center; justify-content:center; color:var(--texto-medio); text-decoration:none; transition:border-color .3s,color .3s; }
-    .social-link:hover { border-color:var(--dorado); color:var(--dorado); }
-    .footer-col h4 { font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--dorado); margin-bottom:1.2rem; }
-    .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:0.7rem; }
-    .footer-col ul a { text-decoration:none; color:var(--texto-medio); font-size:0.82rem; transition:color .3s; }
-    .footer-col ul a:hover { color:var(--crema); }
-    .footer-bottom { max-width:1200px; margin:0 auto; padding-top:2rem; border-top:1px solid rgba(201,168,76,.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-    .footer-copy { font-size:0.72rem; color:var(--texto-medio); }
-    .footer-legal { display:flex; gap:2rem; }
-    .footer-legal a { font-size:0.72rem; color:var(--texto-medio); text-decoration:none; }
-    .footer-legal a:hover { color:var(--crema); }
-
-    /* ── WA FLOAT ── */
-    .wa-float {
-      position: fixed; bottom: 2rem; right: 2rem; z-index: 400;
-      background: #25D366; color: white; width: 58px; height: 58px;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; text-decoration: none;
-      box-shadow: 0 4px 20px rgba(37,211,102,.4);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,.6); }
-
-    /* ════════════════════════════════
-       CARRITO DRAWER
-    ════════════════════════════════ */
-    .cart-overlay {
-      position: fixed; inset: 0; background: rgba(8,20,14,.7);
-      z-index: 600; opacity: 0; pointer-events: none;
-      transition: opacity 0.3s; backdrop-filter: blur(4px);
-    }
-    .cart-overlay.open { opacity: 1; pointer-events: all; }
-
-    .cart-drawer {
-      position: fixed; top: 0; right: -480px; width: 100%; max-width: 480px;
-      height: 100vh; z-index: 700;
-      background: var(--verde-profundo);
-      border-left: 1px solid rgba(201,168,76,.15);
-      display: flex; flex-direction: column;
-      transition: right 0.4s cubic-bezier(.4,0,.2,1);
-      overflow: hidden;
-    }
-    .cart-drawer.open { right: 0; }
-
-    .cart-header {
-      padding: 1.8rem; border-bottom: 1px solid rgba(201,168,76,.12);
-      display: flex; align-items: center; justify-content: space-between;
-      background: var(--verde-medio);
-    }
-    .cart-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; }
-    .cart-close {
-      background: none; border: none; color: var(--texto-claro);
-      font-size: 1.6rem; cursor: pointer; line-height: 1;
-      transition: color 0.3s;
-    }
-    .cart-close:hover { color: var(--dorado); }
-
-    .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
-    .cart-items::-webkit-scrollbar { width: 4px; }
-    .cart-items::-webkit-scrollbar-track { background: transparent; }
-    .cart-items::-webkit-scrollbar-thumb { background: rgba(201,168,76,.3); border-radius: 2px; }
-
-    .cart-empty {
-      flex: 1; display: flex; flex-direction: column; align-items: center;
-      justify-content: center; gap: 1rem; opacity: 0.5; padding: 3rem;
-    }
-    .cart-empty-icon { font-size: 4rem; }
-    .cart-empty p { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; text-align: center; }
-
-    .cart-item {
-      display: grid; grid-template-columns: 60px 1fr auto;
-      gap: 1rem; align-items: start;
-      padding: 1rem; background: var(--verde-medio);
-      border: 1px solid rgba(201,168,76,.1);
-      animation: slideIn 0.3s ease;
-    }
-    @keyframes slideIn { from { opacity:0; transform:translateX(20px); } to { opacity:1; transform:translateX(0); } }
-
-    .cart-item-img {
-      width: 60px; height: 60px;
-      background: linear-gradient(135deg, rgba(26,61,43,.8), rgba(42,92,64,.5));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem; border: 1px solid rgba(201,168,76,.1);
-    }
-    .cart-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--blanco); line-height: 1.3; margin-bottom: 0.5rem; }
-    .cart-item-controls { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.3rem; }
-    .qty-btn {
-      width: 26px; height: 26px; background: none;
-      border: 1px solid rgba(201,168,76,.25); color: var(--dorado);
-      cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
-    }
-    .qty-btn:hover { background: rgba(201,168,76,.15); }
-    .qty-display { min-width: 20px; text-align: center; font-size: 0.9rem; color: var(--blanco); }
-    .cart-item-price { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--dorado-claro); white-space: nowrap; }
-    .cart-item-remove {
-      background: none; border: none; color: var(--texto-medio);
-      cursor: pointer; font-size: 0.9rem; padding: 0.2rem;
-      transition: color 0.3s; display: block; margin-top: 0.3rem;
-    }
-    .cart-item-remove:hover { color: var(--rojo); }
-    .cart-item-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; }
-
-    .cart-footer {
-      padding: 1.5rem; border-top: 1px solid rgba(201,168,76,.12);
-      background: var(--verde-medio); display: flex; flex-direction: column; gap: 1rem;
-    }
-    .cart-subtotal { display: flex; justify-content: space-between; align-items: center; }
-    .cart-subtotal span:first-child { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--texto-medio); }
-    .cart-subtotal-price { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--dorado-claro); }
-
-    .checkout-buttons { display: flex; flex-direction: column; gap: 0.8rem; }
-
-    .btn-mp {
-      display: flex; align-items: center; justify-content: center; gap: 0.8rem;
-      background: #009EE3; color: white; border: none;
-      padding: 1rem; cursor: pointer; width: 100%;
-      font-family: 'Jost', sans-serif; font-size: 0.82rem;
-      font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-      transition: background 0.3s, transform 0.2s;
-    }
-    .btn-mp:hover { background: #0088cc; transform: translateY(-1px); }
-    .btn-mp:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-    .btn-wa-checkout {
-      display: flex; align-items: center; justify-content: center; gap: 0.8rem;
-      background: #25D366; color: white; border: none;
-      padding: 1rem; cursor: pointer; width: 100%;
-      font-family: 'Jost', sans-serif; font-size: 0.82rem;
-      font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-      transition: background 0.3s, transform 0.2s;
-    }
-    .btn-wa-checkout:hover { background: #1db954; transform: translateY(-1px); }
-
-    .cart-note { font-size: 0.7rem; color: var(--texto-medio); text-align: center; }
-
-    /* ── TOAST ── */
-    .toast {
-      position: fixed; bottom: 5.5rem; right: 2rem; z-index: 800;
-      background: var(--verde-claro); border: 1px solid rgba(201,168,76,.3);
-      color: var(--crema); padding: 0.9rem 1.4rem;
-      font-size: 0.82rem; letter-spacing: 0.04em;
-      transform: translateY(20px); opacity: 0;
-      transition: all 0.3s; pointer-events: none;
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .toast.show { transform: translateY(0); opacity: 1; }
-
-    /* ── MODAL PRODUCTO ── */
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(4,12,8,.85);
-      z-index: 800; opacity: 0; pointer-events: none;
-      transition: opacity 0.3s; backdrop-filter: blur(6px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 1.5rem;
-    }
-    .modal-overlay.open { opacity: 1; pointer-events: all; }
-
-    .modal {
-      background: var(--verde-profundo);
-      border: 1px solid rgba(201,168,76,.2);
-      max-width: 780px; width: 100%;
-      max-height: 90vh; overflow-y: auto;
-      position: relative;
-      transform: scale(0.95) translateY(20px);
-      transition: transform 0.35s cubic-bezier(.4,0,.2,1);
-    }
-    .modal-overlay.open .modal { transform: scale(1) translateY(0); }
-    .modal::-webkit-scrollbar { width: 4px; }
-    .modal::-webkit-scrollbar-thumb { background: rgba(201,168,76,.3); }
-
-    .modal-close {
-      position: absolute; top: 1.2rem; right: 1.2rem;
-      background: none; border: none; color: var(--texto-medio);
-      font-size: 1.4rem; cursor: pointer; z-index: 1;
-      transition: color 0.3s;
-    }
-    .modal-close:hover { color: var(--dorado); }
-
-    .modal-body {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-    }
-
-    .modal-img {
-      background: linear-gradient(135deg, #c8d400, #e6f000);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 7rem; padding: 3rem;
-      min-height: 300px;
-      position: relative; overflow: hidden;
-    }
-    .modal-img::after {
-      content: 'FAN FUNGI';
-      position: absolute; bottom: 1rem; left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.65rem; letter-spacing: 0.3em;
-      color: rgba(42,92,64,.6); font-weight: 700;
-    }
-
-    .modal-info { padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
-
-    .modal-categoria { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dorado); }
-    .modal-nombre { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--blanco); line-height: 1.2; }
-    .modal-subtitulo { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--dorado-claro); }
-    .modal-desc { font-size: 0.85rem; color: var(--texto-claro); line-height: 1.8; }
-
-    .modal-hongos {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;
-      margin: 0.5rem 0;
-    }
-    .hongo-chip {
-      background: rgba(42,92,64,.3); border: 1px solid rgba(201,168,76,.15);
-      padding: 0.7rem 1rem;
-    }
-    .hongo-chip strong { display: block; font-size: 0.78rem; color: var(--blanco); margin-bottom: 0.2rem; }
-    .hongo-chip span { font-size: 0.68rem; color: var(--texto-medio); }
-
-    .modal-precio-wrap { display: flex; align-items: center; gap: 1rem; padding-top: 0.5rem; border-top: 1px solid rgba(201,168,76,.1); }
-    .modal-precio { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--dorado-claro); }
-    .modal-peso { font-size: 0.75rem; color: var(--texto-medio); letter-spacing: 0.1em; }
-
-    .modal-btn {
-      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-      background: var(--dorado); color: var(--verde-profundo);
-      border: none; padding: 1rem; cursor: pointer; width: 100%;
-      font-family: 'Jost', sans-serif; font-weight: 700; font-size: 0.82rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      transition: background 0.3s;
-    }
-    .modal-btn:hover { background: var(--dorado-claro); }
-
-    /* Tabla nutricional */
-    .nutri-section {
-      grid-column: 1 / -1;
-      padding: 0 2.5rem 2.5rem;
-      border-top: 1px solid rgba(201,168,76,.1);
-    }
-    .nutri-title {
-      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--dorado); margin: 1.5rem 0 1rem; display: block;
-    }
-    .nutri-table {
-      width: 100%; border-collapse: collapse; font-size: 0.8rem;
-    }
-    .nutri-table th {
-      text-align: left; padding: 0.6rem 0.8rem;
-      background: var(--verde-medio); color: var(--texto-claro);
-      font-weight: 500; font-size: 0.7rem; letter-spacing: 0.06em;
-    }
-    .nutri-table td {
-      padding: 0.55rem 0.8rem; color: var(--texto-claro);
-      border-bottom: 1px solid rgba(201,168,76,.07);
-    }
-    .nutri-table tr:hover td { background: rgba(42,92,64,.2); }
-    .nutri-table .nutri-header td {
-      font-weight: 600; color: var(--blanco); font-size: 0.85rem;
-      background: rgba(201,168,76,.08);
-    }
-    .nutri-table .nutri-sub td { padding-left: 1.8rem; }
-    .nutri-table .nutri-hongo td { color: var(--dorado-claro); font-weight: 500; }
-    .nutri-table td:last-child { text-align: right; color: var(--texto-medio); }
-    .nutri-nota { font-size: 0.68rem; color: var(--texto-medio); margin-top: 0.8rem; line-height: 1.6; }
-
-    @media (max-width: 640px) {
-      .modal-body { grid-template-columns: 1fr; }
-      .modal-img { min-height: 200px; font-size: 5rem; }
-      .nutri-section { padding: 0 1.5rem 1.5rem; }
-      .modal-info { padding: 1.5rem; }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width:900px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      .categorias-grid { grid-template-columns: repeat(2,1fr); }
-      .nosotros-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .test-grid { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .footer-brand { grid-column: 1/-1; }
-      .benefits-inner { grid-template-columns: repeat(2,1fr); }
-    }
-    @media (max-width:600px) {
-      .benefits-inner { grid-template-columns: 1fr; }
-      .categorias-grid { grid-template-columns: 1fr 1fr; }
-      .combo-row { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr; }
-      .newsletter-form { flex-direction: column; }
-      .cart-drawer { max-width: 100%; }
-    }
-  </style>
+  /* ── PRINT BUTTON ── */
+  .print-btn {
+    position: fixed; bottom: 28px; left: 32px; z-index: 100;
+    font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+    padding: 10px 22px;
+    border: 1px solid rgba(184,150,90,.4);
+    background: transparent; color: var(--gold);
+    cursor: pointer; transition: all .3s;
+  }
+  .print-btn:hover {
+    background: rgba(184,150,90,.1);
+  }
+</style>
 </head>
 <body>
 
-  <!-- MODAL PRODUCTO: YERBA MATE -->
-  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-    <div class="modal" id="modalProd">
-      <button class="modal-close" onclick="closeModalDirect()">✕</button>
-      <div class="modal-body">
+<nav class="nav">
+  <div class="nav-logo">BC</div>
+  <div class="nav-links">
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#casos">Casos</a>
+    <a href="#metricas">Métricas</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <div class="nav-dot"></div>
+</nav>
 
-        <div class="modal-img">🧉</div>
-
-        <div class="modal-info">
-          <span class="modal-categoria">Bienestar · Energía</span>
-          <h2 class="modal-nombre">Yerba Mate<br/>Cuatro Hongos</h2>
-          <span class="modal-subtitulo">Hongos Adaptógenos · 200g</span>
-
-          <p class="modal-desc">Una nueva forma de consumir energía todos los días. Combinamos lo mejor de la tradición del mate argentino con el poder de cuatro hongos medicinales adaptógenos, para que cada cebada sea un ritual de bienestar.</p>
-
-          <div class="modal-hongos">
-            <div class="hongo-chip"><strong>🧠 Melena de León</strong><span>Foco y claridad mental</span></div>
-            <div class="hongo-chip"><strong>🌿 Reishi</strong><span>Equilibrio y sistema inmune</span></div>
-            <div class="hongo-chip"><strong>⚡ Cordyceps</strong><span>Energía y rendimiento</span></div>
-            <div class="hongo-chip"><strong>🍄 Shiitake</strong><span>Nutrición y vitalidad</span></div>
-          </div>
-
-          <div class="modal-precio-wrap">
-            <span class="modal-precio" id="modalPrecio">$14.000</span>
-            <span class="modal-peso">200g · 6 porciones de 33g</span>
-          </div>
-
-          <button class="modal-btn" id="modalBtnAgregar" onclick="addToCartFromModal()">
-            + Agregar al carrito
-          </button>
-        </div>
-
-        <!-- TABLA NUTRICIONAL -->
-        <div class="nutri-section">
-          <span class="nutri-title">Información nutricional</span>
-          <table class="nutri-table">
-            <thead>
-              <tr>
-                <th>Nutriente</th>
-                <th style="text-align:right;">Por porción (33g)</th>
-                <th style="text-align:right;">%VD</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="nutri-header"><td colspan="3">Porciones por envase: 6 &nbsp;·&nbsp; Tamaño de porción: 33g</td></tr>
-              <tr class="nutri-header"><td>Calorías</td><td>0</td><td>—</td></tr>
-              <tr><td>Grasa Total</td><td>0g</td><td>0%</td></tr>
-              <tr class="nutri-sub"><td>Grasa Saturada</td><td>0g</td><td>0%</td></tr>
-              <tr class="nutri-sub"><td>Grasas trans</td><td>0g</td><td>—</td></tr>
-              <tr><td>Colesterol</td><td>0mg</td><td>0%</td></tr>
-              <tr><td>Sodio</td><td>0mg</td><td>0%</td></tr>
-              <tr><td>Carbohidratos Totales</td><td>0g</td><td>0%</td></tr>
-              <tr class="nutri-sub"><td>Fibra Dietética</td><td>10.2g</td><td>30%</td></tr>
-              <tr class="nutri-sub"><td>Azúcares Totales</td><td>0g</td><td>—</td></tr>
-              <tr class="nutri-sub"><td>&nbsp;&nbsp;Incl. Azúcares añadidos</td><td>0g</td><td>0%</td></tr>
-              <tr><td>Proteína</td><td>1.7g</td><td>5%</td></tr>
-              <tr><td colspan="3" style="padding-top:.8rem;"><strong style="color:var(--dorado);font-size:.7rem;letter-spacing:.15em;">HONGOS MEDICINALES</strong></td></tr>
-              <tr class="nutri-hongo"><td>Melena de León</td><td>75mg</td><td>—</td></tr>
-              <tr class="nutri-hongo"><td>Total por envase</td><td>450mg</td><td>—</td></tr>
-            </tbody>
-          </table>
-          <p class="nutri-nota">* Los porcentajes de valor diario (%VD) están basados en una dieta de 2.000 calorías. · Alta fuente de vitaminas y minerales. Fortalece el equilibrio del sistema nervioso, digestivo y circulatorio. · Producto argentino 🇦🇷</p>
-        </div>
-
-      </div>
+<!-- ══════════════════════════════════════ SLIDE 1 · COVER -->
+<section class="slide slide-cover">
+  <div class="cover-rule"></div>
+  <p class="cover-eyebrow animate d1">Portfolio · Marketing Digital</p>
+  <h1 class="cover-name animate d2">
+    Brisa<br><em>Carbone</em>
+  </h1>
+  <p class="cover-tagline animate d3">
+    Estrategia <span>◈</span> Creatividad <span>◈</span> Resultados
+  </p>
+  <div class="cover-bottom animate d4">
+    <div class="cover-stat">
+      <span class="cover-stat-num">+50</span>
+      <span class="cover-stat-label">Campañas</span>
+    </div>
+    <div class="cover-stat">
+      <span class="cover-stat-num">4×</span>
+      <span class="cover-stat-label">ROAS Promedio</span>
+    </div>
+    <div class="cover-stat">
+      <span class="cover-stat-num">+20</span>
+      <span class="cover-stat-label">Clientes</span>
     </div>
   </div>
+  <span class="cover-yr">2025</span>
+</section>
 
-  <!-- CART OVERLAY -->
-  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
-
-  <!-- CART DRAWER -->
-  <div class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
-      <h2>Tu carrito 🍄</h2>
-      <button class="cart-close" onclick="closeCart()">✕</button>
-    </div>
-    <div class="cart-items" id="cartItems">
-      <div class="cart-empty">
-        <span class="cart-empty-icon">🛒</span>
-        <p>Tu carrito está vacío</p>
-      </div>
-    </div>
-    <div class="cart-footer" id="cartFooter" style="display:none;">
-      <div class="cart-subtotal">
-        <span>Total</span>
-        <span class="cart-subtotal-price" id="cartTotal">$0</span>
-      </div>
-      <div class="checkout-buttons">
-        <button class="btn-mp" id="btnMP" onclick="pagarMP()">
-          <span>💳</span> Pagar con Mercado Pago
-        </button>
-        <button class="btn-wa-checkout" onclick="consultarWA()">
-          <span>💬</span> Consultar por WhatsApp
-        </button>
-      </div>
-      <p class="cart-note">🚚 Envío gratis a todo el país</p>
+<!-- ══════════════════════════════════════ SLIDE 2 · ABOUT -->
+<section class="slide slide-about" id="sobre-mi">
+  <div class="about-left">
+    <p class="section-label">01 &nbsp;·&nbsp; Sobre mí</p>
+    <h2 class="section-title">Hago que<br>las marcas<br><em>conecten</em></h2>
+    <p class="body-text">
+      Soy especialista en marketing digital con foco en estrategia de performance, 
+      contenido y gestión de campañas en Meta. Trabajo con marcas que quieren 
+      crecer de manera inteligente — con datos, creatividad y propósito.
+    </p>
+    <p class="body-text">
+      Mi filosofía es simple: cada peso invertido en publicidad debe tener un 
+      objetivo claro y un resultado medible. Combino análisis riguroso con 
+      una mirada creativa para maximizar el retorno de cada campaña.
+    </p>
+    <div class="pill-row">
+      <span class="pill">Meta Ads</span>
+      <span class="pill">Estrategia</span>
+      <span class="pill">Contenido</span>
+      <span class="pill">eCommerce</span>
+      <span class="pill">ROAS</span>
     </div>
   </div>
-
-  <!-- TOAST -->
-  <div class="toast" id="toast">✓ Agregado al carrito</div>
-
-  <!-- NAV -->
-  <nav id="mainNav">
-    <a href="#" class="nav-logo">
-      <img src="https://dcdn-us.mitiendanube.com/stores/007/044/899/themes/common/logo-1287220378-1765994132-aa81225b553f09e1b4249aa377ac109e1765994132-640-0.webp" alt="Fan Fungi"/>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#categorias">Productos</a></li>
-      <li><a href="#nosotros">Nosotros</a></li>
-      <li><a href="#faq">Preguntas</a></li>
-    </ul>
-    <button class="nav-cart" onclick="openCart()">
-      🛒 Carrito
-      <span class="cart-badge" id="cartBadge">0</span>
-    </button>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-ring hr1"></div>
-    <div class="hero-ring hr2"></div>
-    <div class="hero-ring hr3"></div>
-    <div class="hero-content">
-      <span class="hero-eyebrow">Hongos medicinales · 100% naturales</span>
-      <h1>Naturaleza<br/>que <em>transforma</em></h1>
-      <p class="hero-sub">Extractos de hongos funcionales y aceites naturales para potenciar tu energía, enfoque, descanso y defensas.</p>
-      <div class="hero-buttons">
-        <a href="#productos" class="btn-primary">Ver productos →</a>
-        <a href="https://wa.me/542236186135" class="btn-secondary" target="_blank">💬 Consultar por WhatsApp</a>
-      </div>
+  <div class="about-right">
+    <div class="gold-divider"></div>
+    <div class="contact-line">
+      <span class="contact-dot"></span>
+      <span><strong>Email</strong> &nbsp;·&nbsp; brisa@tudominio.com</span>
     </div>
-  </section>
+    <div class="contact-line">
+      <span class="contact-dot"></span>
+      <span><strong>Instagram</strong> &nbsp;·&nbsp; @brisacarbone</span>
+    </div>
+    <div class="contact-line">
+      <span class="contact-dot"></span>
+      <span><strong>LinkedIn</strong> &nbsp;·&nbsp; /in/brisacarbone</span>
+    </div>
+    <div class="contact-line">
+      <span class="contact-dot"></span>
+      <span><strong>WhatsApp</strong> &nbsp;·&nbsp; +54 9 11 ···· ····</span>
+    </div>
+    <div class="gold-divider" style="margin-top:36px"></div>
+    <p class="body-text" style="font-size:.75rem; color:#6A6050">
+      Basada en Buenos Aires · Trabaja con clientes en toda Latinoamérica
+    </p>
+  </div>
+</section>
 
-  <!-- BENEFITS -->
-  <div class="benefits">
-    <div class="benefits-inner">
-      <div class="benefit"><span class="benefit-icon">🚚</span><span class="benefit-title">Envío gratis</span><span class="benefit-text">A todo el país</span></div>
-      <div class="benefit"><span class="benefit-icon">🍄</span><span class="benefit-title">100% Natural</span><span class="benefit-text">Sin aditivos artificiales</span></div>
-      <div class="benefit"><span class="benefit-icon">🔬</span><span class="benefit-title">Alta concentración</span><span class="benefit-text">Extractos puros y activos</span></div>
-      <div class="benefit"><span class="benefit-icon">💬</span><span class="benefit-title">Atención directa</span><span class="benefit-text">Respondemos por WhatsApp</span></div>
+<!-- ══════════════════════════════════════ SLIDE 3 · SERVICES -->
+<section class="slide slide-services" id="servicios">
+  <div class="services-header">
+    <p class="section-label" style="justify-content:center">02 &nbsp;·&nbsp; Servicios</p>
+    <h2 class="section-title" style="text-align:center">Lo que puedo<br>hacer por tu <em>marca</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-name">Campañas Meta Ads</div>
+      <p class="service-desc">Diseño, configuración y optimización de campañas en Facebook e Instagram. Segmentación avanzada, creatividades y seguimiento de conversiones.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-name">Estrategia de Contenido</div>
+      <p class="service-desc">Planificación editorial alineada con los objetivos de negocio. Calendarios, copys, guías de estilo y storytelling de marca.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-name">Email & Automatizaciones</div>
+      <p class="service-desc">Flujos de email marketing y automatizaciones para nutrir leads, recuperar carritos y fidelizar clientes.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-name">Análisis & ROAS</div>
+      <p class="service-desc">Configuración de píxeles, eventos de conversión y dashboards personalizados para medir el impacto real de cada inversión.</p>
     </div>
   </div>
+</section>
 
-  <!-- CATEGORÍAS -->
-  <section class="categorias" id="categorias">
-    <div class="categorias-inner">
-      <span class="section-label">Lo que buscás</span>
-      <h2 class="section-title">Encontrá tu <em>equilibrio</em></h2>
-      <div class="categorias-grid">
-        <a href="#productos" class="cat-card"><span class="cat-icon">⚡</span><span class="cat-name">Energía</span><span class="cat-desc">Vitalidad natural sin cafeína. Cordyceps para rendir sin agotarte.</span></a>
-        <a href="#productos" class="cat-card"><span class="cat-icon">🌿</span><span class="cat-name">Estrés</span><span class="cat-desc">Calma tu sistema nervioso. Reishi para dormir mejor y relajarte.</span></a>
-        <a href="#productos" class="cat-card"><span class="cat-icon">🧠</span><span class="cat-name">Enfoque</span><span class="cat-desc">Claridad mental y memoria. Melena de León para pensar mejor.</span></a>
-        <a href="#productos" class="cat-card"><span class="cat-icon">🛡️</span><span class="cat-name">Defensa</span><span class="cat-desc">Fortalecé tu sistema inmune con hongos medicinales.</span></a>
-      </div>
+<!-- ══════════════════════════════════════ SLIDE 4 · CASE 1 -->
+<section class="slide slide-case" id="casos">
+  <div class="case-header">
+    <div>
+      <p class="section-label">03 &nbsp;·&nbsp; Caso de Éxito</p>
+      <h2 class="section-title" style="margin-bottom:0">Fan Fungi<br><em>Aceite de Orégano</em></h2>
     </div>
-  </section>
-
-  <!-- PRODUCTOS -->
-  <section id="productos">
-    <div class="productos-inner">
-      <div class="productos-header">
-        <div>
-          <span class="section-label">Selección</span>
-          <h2 class="section-title">Productos <em>destacados</em></h2>
-        </div>
-      </div>
-      <div class="productos-grid" id="productosGrid">
-        <!-- Se renderizan con JS -->
-      </div>
+    <span class="case-tag">01</span>
+  </div>
+  <div class="case-body">
+    <div class="case-block">
+      <p class="case-block-label">Cliente</p>
+      <p class="case-block-title">Fan Fungi</p>
+      <p class="case-block-text">Tienda online especializada en productos naturales. Venta directa via Tiendanube con foco en aceite de orégano premium.</p>
     </div>
-  </section>
-
-  <!-- COMBOS -->
-  <section class="combos" id="combos">
-    <div class="combos-inner">
-      <span class="section-label">Ahorrá más</span>
-      <h2 class="section-title" style="margin-bottom:2rem;">Combos <em>especiales</em></h2>
-      <div id="combosGrid"></div>
+    <div class="case-block">
+      <p class="case-block-label">Objetivo</p>
+      <p class="case-block-title">Aumentar ventas online</p>
+      <p class="case-block-text">Generar tráfico calificado a la tienda y convertir visitas en compras mediante campañas de performance en Meta.</p>
     </div>
-  </section>
-
-  <!-- NOSOTROS -->
-  <section class="nosotros" id="nosotros">
-    <div class="nosotros-inner">
-      <div class="nosotros-visual">
-        <div class="nosotros-frame">🍄
-          <div class="nosotros-badge"><span style="font-size:1.5rem;">🍄</span><span>100%<br/>Natural</span></div>
-        </div>
-      </div>
-      <div class="nosotros-text">
-        <span class="section-label">Quiénes somos</span>
-        <h2 class="section-title">Hongos que <em>cuidan</em></h2>
-        <p>En Fan Fungi creemos que la naturaleza tiene las respuestas. Nos especializamos en hongos medicinales funcionales y aceites naturales, elaborados con extractos de alta concentración para que sintás los beneficios de verdad.</p>
-        <p>Cada producto está formulado para acompañar tu rutina diaria: más energía, mejor enfoque, menos estrés y defensas más fuertes — sin estimulantes artificiales ni químicos.</p>
-        <ul class="feature-list">
-          <li>Extractos de hongos de alta potencia</li>
-          <li>Sin aditivos artificiales ni conservantes</li>
-          <li>Envío a todo Argentina con seguimiento</li>
-          <li>Atención personalizada por WhatsApp</li>
-        </ul>
-      </div>
+    <div class="case-block">
+      <p class="case-block-label">Estrategia</p>
+      <p class="case-block-title">Full Funnel Meta</p>
+      <p class="case-block-text">Configuración del Píxel + eventos de conversión · campañas de awareness, consideración y conversión · creatividades A/B.</p>
     </div>
-  </section>
-
-  <!-- TESTIMONIOS -->
-  <section class="testimonios">
-    <div class="testimonios-inner">
-      <span class="section-label">Lo que dicen</span>
-      <h2 class="section-title">Clientes <em>reales</em></h2>
-      <div class="test-grid">
-        <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-quote">"El aceite de Cordyceps me cambió las mañanas. Arranco con energía sin necesitar café."</p><span class="test-author">María G. — Buenos Aires</span></div>
-        <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-quote">"Llevo dos meses tomando el Reishi y duermo mucho mejor. Menos ansiedad, más calma."</p><span class="test-author">Sebastián M. — Córdoba</span></div>
-        <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-quote">"La Melena de León es increíble para estudiar. Noto más concentración y claridad."</p><span class="test-author">Valentina L. — Rosario</span></div>
-      </div>
+    <div class="case-block">
+      <p class="case-block-label">Resultados</p>
+      <span class="result-big">4×</span>
+      <span class="result-sub">ROAS obtenido</span>
+      <p class="case-block-text" style="margin-top:12px">Tracking de Purchase events configurado. Optimización continua de campañas.</p>
     </div>
-  </section>
+  </div>
+  <div class="case-footer">
+    <span class="case-industry-tag">eCommerce</span>
+    <span class="case-industry-tag">Productos Naturales</span>
+    <span class="case-industry-tag">Meta Ads</span>
+  </div>
+</section>
 
-  <!-- FAQ -->
-  <section class="faq" id="faq">
-    <div class="faq-inner">
-      <span class="section-label">Dudas frecuentes</span>
-      <h2 class="section-title">Preguntas <em>frecuentes</em></h2>
-      <div class="faq-list">
-        <details><summary>¿Cómo se toman los aceites? <span class="faq-icon">+</span></summary><p>Se recomiendan entre 5 y 10 gotas sublinguales una vez al día, preferentemente en ayunas. También podés incorporarlos a bebidas frías o cálidas.</p></details>
-        <details><summary>¿Tienen efectos secundarios? <span class="faq-icon">+</span></summary><p>Son extractos naturales, bien tolerados por la mayoría. Si estás embarazada, tomás medicación o tenés alguna condición especial, consultá con tu médico antes.</p></details>
-        <details><summary>¿Cuánto tarda el envío? <span class="faq-icon">+</span></summary><p>Los pedidos se despachan en 48hs hábiles. El tiempo estimado de entrega es de 3 a 7 días según la zona.</p></details>
-        <details><summary>¿Cómo pago? <span class="faq-icon">+</span></summary><p>Aceptamos tarjetas de crédito y débito, transferencia y Mercado Pago. También podés coordinar el pago directamente por WhatsApp.</p></details>
-        <details><summary>¿Puedo combinar productos? <span class="faq-icon">+</span></summary><p>Sí, los hongos medicinales funcionan muy bien en combinación. Podés consultarnos por WhatsApp y te ayudamos a armar la combinación ideal para tus objetivos.</p></details>
-      </div>
+<!-- ══════════════════════════════════════ SLIDE 5 · CASE 2 -->
+<section class="slide slide-case">
+  <div class="case-header">
+    <div>
+      <p class="section-label">04 &nbsp;·&nbsp; Caso de Éxito</p>
+      <h2 class="section-title" style="margin-bottom:0">Tu Próximo<br><em>Cliente</em></h2>
     </div>
-  </section>
-
-  <!-- NEWSLETTER -->
-  <section class="newsletter">
-    <div class="newsletter-inner">
-      <span class="section-label">Comunidad</span>
-      <h2 class="section-title">Recibí <em>novedades</em> y ofertas</h2>
-      <p>Sumate y enterate de descuentos exclusivos, nuevos productos y contenido sobre bienestar natural.</p>
-      <form class="newsletter-form" onsubmit="return false;">
-        <input type="email" placeholder="tu@email.com"/>
-        <button type="submit">Suscribirme</button>
-      </form>
-      <p class="newsletter-legal">Sin spam. Podés darte de baja cuando quieras.</p>
+    <span class="case-tag">02</span>
+  </div>
+  <div class="case-body">
+    <div class="case-block">
+      <p class="case-block-label">Cliente</p>
+      <p class="case-block-title">Nombre del proyecto</p>
+      <p class="case-block-text">Describí el rubro, el tamaño y el contexto del cliente. Cuanto más específico, más creíble y valioso resulta el caso.</p>
     </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="https://dcdn-us.mitiendanube.com/stores/007/044/899/themes/common/logo-1287220378-1765994132-aa81225b553f09e1b4249aa377ac109e1765994132-640-0.webp" alt="Fan Fungi"/>
-        <p class="footer-tagline">Hongos medicinales y aceites naturales<br/>para vivir mejor, desde adentro.</p>
-        <div class="footer-social">
-          <a href="https://wa.me/542236186135" class="social-link" target="_blank">💬</a>
-          <a href="#" class="social-link">📷</a>
-          <a href="#" class="social-link">📘</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Productos</h4>
-        <ul>
-          <li><a href="#productos">Energía</a></li>
-          <li><a href="#productos">Estrés</a></li>
-          <li><a href="#productos">Enfoque</a></li>
-          <li><a href="#productos">Defensa</a></li>
-          <li><a href="#combos">Combos</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Información</h4>
-        <ul>
-          <li><a href="#nosotros">Quiénes somos</a></li>
-          <li><a href="#faq">Preguntas frecuentes</a></li>
-          <li><a href="https://wa.me/542236186135" target="_blank">Contacto</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="https://fanfungi.com/politica-de-devolucion/">Política de devolución</a></li>
-          <li><a href="https://www.argentina.gob.ar/produccion/defensadelconsumidor/formulario">Defensa del consumidor</a></li>
-          <li><a href="https://fanfungi.com/contacto/?order_cancellation_without_id=true">Botón de arrepentimiento</a></li>
-        </ul>
-      </div>
+    <div class="case-block">
+      <p class="case-block-label">Objetivo</p>
+      <p class="case-block-title">¿Qué buscaban?</p>
+      <p class="case-block-text">Describí el desafío o problema que tenía el cliente antes de trabajar juntos. El punto de partida importa.</p>
     </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Fan Fungi — Todos los derechos reservados.</span>
-      <div class="footer-legal">
-        <a href="#">Devoluciones</a>
-        <a href="https://wa.me/542236186135" target="_blank">Contacto</a>
-      </div>
+    <div class="case-block">
+      <p class="case-block-label">Estrategia</p>
+      <p class="case-block-title">¿Cómo lo resolviste?</p>
+      <p class="case-block-text">Detalles de las acciones implementadas · plataformas · creatividades · segmentación · optimizaciones.</p>
     </div>
-  </footer>
+    <div class="case-block">
+      <p class="case-block-label">Resultados</p>
+      <span class="result-big">+XX%</span>
+      <span class="result-sub">Métrica clave</span>
+      <p class="case-block-text" style="margin-top:12px">Agregá el resultado más impactante. Los números hablan solos.</p>
+    </div>
+  </div>
+  <div class="case-footer">
+    <span class="case-industry-tag">Industria</span>
+    <span class="case-industry-tag">Plataforma</span>
+    <span class="case-industry-tag">Tipo de campaña</span>
+  </div>
+</section>
 
-  <!-- WA FLOAT -->
-  <a href="https://wa.me/542236186135" class="wa-float" target="_blank" title="WhatsApp">💬</a>
+<!-- ══════════════════════════════════════ SLIDE 6 · CASE 3 -->
+<section class="slide slide-case">
+  <div class="case-header">
+    <div>
+      <p class="section-label">05 &nbsp;·&nbsp; Caso de Éxito</p>
+      <h2 class="section-title" style="margin-bottom:0">Tu Próximo<br><em>Caso</em></h2>
+    </div>
+    <span class="case-tag">03</span>
+  </div>
+  <div class="case-body">
+    <div class="case-block">
+      <p class="case-block-label">Cliente</p>
+      <p class="case-block-title">Nombre del proyecto</p>
+      <p class="case-block-text">Describí el rubro, el tamaño y el contexto del cliente. Cuanto más específico, más creíble y valioso resulta el caso.</p>
+    </div>
+    <div class="case-block">
+      <p class="case-block-label">Objetivo</p>
+      <p class="case-block-title">¿Qué buscaban?</p>
+      <p class="case-block-text">Describí el desafío o problema que tenía el cliente antes de trabajar juntos. El punto de partida importa.</p>
+    </div>
+    <div class="case-block">
+      <p class="case-block-label">Estrategia</p>
+      <p class="case-block-title">¿Cómo lo resolviste?</p>
+      <p class="case-block-text">Detalles de las acciones implementadas · plataformas · creatividades · segmentación · optimizaciones.</p>
+    </div>
+    <div class="case-block">
+      <p class="case-block-label">Resultados</p>
+      <span class="result-big">+XX%</span>
+      <span class="result-sub">Métrica clave</span>
+      <p class="case-block-text" style="margin-top:12px">Agregá el resultado más impactante. Los números hablan solos.</p>
+    </div>
+  </div>
+  <div class="case-footer">
+    <span class="case-industry-tag">Industria</span>
+    <span class="case-industry-tag">Plataforma</span>
+    <span class="case-industry-tag">Tipo de campaña</span>
+  </div>
+</section>
 
-  <!-- ════════════════════════════════
-       JAVASCRIPT
-  ════════════════════════════════ -->
-  <script>
-    /* ── PRODUCTOS DATA ── */
-    const PRODUCTOS = [
-      { id: 1, nombre: 'Energía Natural sin café — Cordyceps 30ml', categoria: 'Energía', precio: 18000, precioAntes: 23000, descuento: '22% OFF', icono: '⚡' },
-      { id: 2, nombre: 'Enfoque y memoria natural — Melena de León 30ml', categoria: 'Enfoque', precio: 18000, precioAntes: 23000, descuento: '22% OFF', icono: '🧠' },
-      { id: 3, nombre: 'Relajación y mejor descanso — Reishi 30ml', categoria: 'Estrés', precio: 18000, precioAntes: 23000, descuento: '22% OFF', icono: '🌿' },
-      { id: 4, nombre: 'Aceite de Orégano 30ml', categoria: 'Defensa', precio: 18000, precioAntes: 23000, descuento: '22% OFF', icono: '🌱' },
-      { id: 5, nombre: 'Caramelos Melena de León x12u', categoria: 'Enfoque', precio: 14000, precioAntes: null, descuento: null, icono: '🍬' },
-      { id: 6, nombre: 'Caramelos Reishi x12u', categoria: 'Estrés', precio: 14000, precioAntes: null, descuento: null, icono: '🍬' },
-      { id: 7, nombre: 'Caramelos Cordyceps x12u', categoria: 'Energía', precio: 14000, precioAntes: null, descuento: null, icono: '🍬' },
-      { id: 8, nombre: 'Carbon Fan', categoria: 'Especial', precio: 1500, precioAntes: 9000, descuento: '83% OFF', icono: '⬛' },
-      { id: 9, nombre: 'Yerba Mate Cuatro Hongos — Adaptógenos 200g', categoria: 'Bienestar', precio: 14000, precioAntes: null, descuento: 'NUEVO', icono: '🧉', detalle: true },
-    ];
+<!-- ══════════════════════════════════════ SLIDE 7 · TOOLS -->
+<section class="slide slide-tools">
+  <div>
+    <p class="section-label" style="justify-content:center">06 &nbsp;·&nbsp; Herramientas</p>
+    <h2 class="section-title" style="text-align:center">Mi <em>stack</em><br>de trabajo</h2>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Meta Ads Manager</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Facebook Business Suite</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Meta Pixel & Conversions API</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Tiendanube</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Google Analytics 4</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Google Tag Manager</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Canva</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Notion</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Mailchimp / Klaviyo</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Later / Buffer</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Windsor.ai</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Looker Studio</div>
+  </div>
+</section>
 
-    const COMBOS = [
-      { id: 101, nombre: 'Combo Orégano × 2', desc: 'Dos aceites de orégano 30ml al mejor precio. Ideal para tener siempre un repuesto.', precio: 30000, precioAntes: 40000, icono: '🌱🌱' },
-      { id: 102, nombre: 'Combo Orégano + Melena de León', desc: 'Defensa + enfoque en un solo pack. Protección natural y claridad mental para el día a día.', precio: 30000, precioAntes: 40000, icono: '🌱🧠' },
-    ];
+<!-- ══════════════════════════════════════ SLIDE 8 · METRICS -->
+<section class="slide slide-metrics" id="metricas">
+  <div>
+    <p class="section-label" style="justify-content:center">07 &nbsp;·&nbsp; Métricas Globales</p>
+    <h2 class="section-title" style="text-align:center">Resultados que<br><em>hablan solos</em></h2>
+  </div>
+  <div class="metrics-row">
+    <div class="metric-item">
+      <span class="metric-value">+50</span>
+      <span class="metric-label">Campañas gestionadas</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-value">4<em>×</em></span>
+      <span class="metric-label">ROAS promedio</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-value">+20</span>
+      <span class="metric-label">Clientes activos</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-value">$XX<em>k</em></span>
+      <span class="metric-label">Inversión manejada</span>
+    </div>
+  </div>
+  <div class="industries-row">
+    <span class="industry-badge">eCommerce</span>
+    <span class="industry-badge">Salud & Bienestar</span>
+    <span class="industry-badge">Gastronomía</span>
+    <span class="industry-badge">Moda</span>
+    <span class="industry-badge">Servicios</span>
+    <span class="industry-badge">Educación</span>
+  </div>
+</section>
 
-    /* ── FORMAT PRICE ── */
-    const fmt = (n) => '$' + n.toLocaleString('es-AR');
+<!-- ══════════════════════════════════════ SLIDE 9 · TESTIMONIALS -->
+<section class="slide slide-testimonials">
+  <div>
+    <p class="section-label" style="justify-content:center">08 &nbsp;·&nbsp; Testimonios</p>
+    <h2 class="section-title" style="text-align:center">Lo que dicen<br>mis <em>clientes</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Brisa transformó completamente nuestra presencia en redes. Las campañas empezaron a dar resultados reales desde el primer mes.</p>
+      <div class="testimonial-rule"></div>
+      <p class="testimonial-name">Nombre del Cliente</p>
+      <p class="testimonial-role">Fundador · Empresa</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">El nivel de análisis y dedicación es increíble. No solo ejecuta, sino que entiende el negocio y propone estrategias que funcionan.</p>
+      <div class="testimonial-rule"></div>
+      <p class="testimonial-name">Nombre del Cliente</p>
+      <p class="testimonial-role">Dueña · Tienda online</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Gracias a Brisa pudimos escalar las ventas de nuestro ecommerce manteniendo un ROAS rentable. La recomiendo sin dudarlo.</p>
+      <div class="testimonial-rule"></div>
+      <p class="testimonial-name">Nombre del Cliente</p>
+      <p class="testimonial-role">CEO · Marca DTC</p>
+    </div>
+  </div>
+</section>
 
-    /* ── RENDER PRODUCTOS ── */
-    function renderProductos() {
-      const grid = document.getElementById('productosGrid');
-      grid.innerHTML = PRODUCTOS.map(p => `
-        <div class="prod-card">
-          <div class="prod-img-wrap" ${p.detalle ? `onclick="openModal()" style="cursor:pointer;"` : ''}>
-            <span class="prod-img-placeholder">${p.icono}</span>
-            ${p.descuento ? `<span class="prod-badge">${p.descuento}</span>` : ''}
-            <span class="prod-envio">Envío gratis</span>
-          </div>
-          <div class="prod-info">
-            <span class="prod-categoria">${p.categoria}</span>
-            <span class="prod-nombre">${p.nombre}</span>
-            <div class="prod-precios">
-              <span class="prod-precio-actual">${fmt(p.precio)}</span>
-              ${p.precioAntes ? `<span class="prod-precio-tachado">${fmt(p.precioAntes)}</span>` : ''}
-            </div>
-            ${p.detalle ? `<button class="btn-agregar" style="margin-top:.6rem;border-color:rgba(201,168,76,.4);color:var(--dorado);" onclick="openModal()">🔍 Ver detalles y tabla nutricional</button>` : ''}
-            <button class="btn-agregar" id="btn-${p.id}" onclick="addToCart(${p.id})">
-              + Agregar al carrito
-            </button>
-          </div>
-        </div>
-      `).join('');
-    }
+<!-- ══════════════════════════════════════ SLIDE 10 · CONTACT -->
+<section class="slide slide-contact" id="contacto">
+  <p class="section-label" style="justify-content:center; position:relative">09 &nbsp;·&nbsp; Contacto</p>
+  <h2 class="contact-title">
+    ¿Listo para hacer<br>crecer tu <em>marca?</em>
+  </h2>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <span class="contact-item-label">Email</span>
+      <span class="contact-item-value">brisa@tudominio.com</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-item-label">Instagram</span>
+      <span class="contact-item-value">@brisacarbone</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-item-label">LinkedIn</span>
+      <span class="contact-item-value">/in/brisacarbone</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-item-label">WhatsApp</span>
+      <span class="contact-item-value">+54 9 11 ···· ····</span>
+    </div>
+  </div>
+  <p class="closing-line">Estrategia con propósito · Resultados con datos</p>
+</section>
 
-    /* ── RENDER COMBOS ── */
-    function renderCombos() {
-      const grid = document.getElementById('combosGrid');
-      grid.innerHTML = COMBOS.map(c => `
-        <div class="combo-row">
-          <div>
-            <div class="combo-nombre">${c.nombre}</div>
-            <div class="combo-desc">${c.desc}</div>
-            <button class="btn-agregar" id="btn-${c.id}" onclick="addToCart(${c.id})" style="max-width:260px;margin-top:1rem;">
-              + Agregar al carrito
-            </button>
-          </div>
-          <div class="combo-right">
-            <span class="combo-precio">${fmt(c.precio)}</span>
-            <span class="combo-antes">${fmt(c.precioAntes)}</span>
-            <span class="combo-ahorro">Ahorrás ${fmt(c.precioAntes - c.precio)}</span>
-          </div>
-        </div>
-      `).join('');
-    }
+<div class="counter" id="counter">— BC ·&nbsp; Portfolio 2025</div>
 
-    /* ── CARRITO STATE ── */
-    let cart = JSON.parse(localStorage.getItem('ff_cart') || '[]');
+<button class="print-btn" onclick="window.print()">↓ Exportar PDF</button>
 
-    function saveCart() { localStorage.setItem('ff_cart', JSON.stringify(cart)); }
-
-    function getAllProducts() { return [...PRODUCTOS, ...COMBOS]; }
-
-    function getProduct(id) { return getAllProducts().find(p => p.id === id); }
-
-    /* ── ADD TO CART ── */
-    function addToCart(id) {
-      const prod = getProduct(id);
-      if (!prod) return;
-      const existing = cart.find(i => i.id === id);
-      if (existing) { existing.qty++; }
-      else { cart.push({ id, qty: 1 }); }
-      saveCart();
-      updateCartUI();
-      showToast(`${prod.nombre.split('—')[0].trim()} agregado`);
-      const btn = document.getElementById('btn-' + id);
-      if (btn) { btn.classList.add('added'); btn.textContent = '✓ Agregado'; setTimeout(() => { btn.classList.remove('added'); btn.textContent = '+ Agregar al carrito'; }, 2000); }
-    }
-
-    /* ── REMOVE FROM CART ── */
-    function removeFromCart(id) {
-      cart = cart.filter(i => i.id !== id);
-      saveCart();
-      updateCartUI();
-    }
-
-    /* ── UPDATE QTY ── */
-    function updateQty(id, delta) {
-      const item = cart.find(i => i.id === id);
-      if (!item) return;
-      item.qty += delta;
-      if (item.qty <= 0) { removeFromCart(id); return; }
-      saveCart();
-      updateCartUI();
-    }
-
-    /* ── UPDATE UI ── */
-    function updateCartUI() {
-      const total = cart.reduce((s, i) => {
-        const p = getProduct(i.id);
-        return s + (p ? p.precio * i.qty : 0);
-      }, 0);
-      const count = cart.reduce((s, i) => s + i.qty, 0);
-
-      // Badge
-      const badge = document.getElementById('cartBadge');
-      badge.textContent = count;
-      badge.classList.toggle('visible', count > 0);
-
-      // Total
-      document.getElementById('cartTotal').textContent = fmt(total);
-
-      // Footer
-      const footer = document.getElementById('cartFooter');
-      footer.style.display = cart.length > 0 ? 'flex' : 'none';
-
-      // Items
-      const itemsEl = document.getElementById('cartItems');
-      if (cart.length === 0) {
-        itemsEl.innerHTML = '<div class="cart-empty"><span class="cart-empty-icon">🛒</span><p>Tu carrito está vacío</p></div>';
-        return;
+<script>
+  // Intersection observer for section counter
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const labels = ['01 · Portada','02 · Sobre mí','03 · Servicios','04 · Caso 1','05 · Caso 2','06 · Caso 3','07 · Herramientas','08 · Métricas','09 · Testimonios','10 · Contacto'];
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = Array.from(slides).indexOf(e.target);
+        counter.textContent = labels[idx] + ' / 10';
       }
-      itemsEl.innerHTML = cart.map(item => {
-        const p = getProduct(item.id);
-        if (!p) return '';
-        return `
-          <div class="cart-item">
-            <div class="cart-item-img">${p.icono}</div>
-            <div>
-              <div class="cart-item-name">${p.nombre}</div>
-              <div class="cart-item-controls">
-                <button class="qty-btn" onclick="updateQty(${p.id}, -1)">−</button>
-                <span class="qty-display">${item.qty}</span>
-                <button class="qty-btn" onclick="updateQty(${p.id}, 1)">+</button>
-              </div>
-            </div>
-            <div class="cart-item-right">
-              <span class="cart-item-price">${fmt(p.precio * item.qty)}</span>
-              <button class="cart-item-remove" onclick="removeFromCart(${p.id})" title="Eliminar">✕</button>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    /* ── MODAL ── */
-    function openModal() {
-      document.getElementById('modalOverlay').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModalDirect() {
-      document.getElementById('modalOverlay').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    function closeModal(e) {
-      if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
-    }
-    function addToCartFromModal() {
-      addToCart(9); // yerba mate id=9
-      closeModalDirect();
-    }
-
-    /* ── CART DRAWER ── */
-    function openCart() {
-      document.getElementById('cartDrawer').classList.add('open');
-      document.getElementById('cartOverlay').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeCart() {
-      document.getElementById('cartDrawer').classList.remove('open');
-      document.getElementById('cartOverlay').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    /* ── TOAST ── */
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = '✓ ' + msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2500);
-    }
-
-    /* ── WHATSAPP CHECKOUT ── */
-    function consultarWA() {
-      if (cart.length === 0) return;
-      const lines = cart.map(item => {
-        const p = getProduct(item.id);
-        return `• ${p.nombre} x${item.qty} — ${fmt(p.precio * item.qty)}`;
-      });
-      const total = cart.reduce((s, i) => { const p = getProduct(i.id); return s + (p ? p.precio * i.qty : 0); }, 0);
-      const msg = `¡Hola! Quiero hacer el siguiente pedido:\n\n${lines.join('\n')}\n\n*Total: ${fmt(total)}*\n\n¿Cómo coordino el pago y el envío?`;
-      window.open('https://wa.me/542236186135?text=' + encodeURIComponent(msg), '_blank');
-    }
-
-    /* ── MERCADO PAGO CHECKOUT ── */
-    async function pagarMP() {
-      if (cart.length === 0) return;
-      const btn = document.getElementById('btnMP');
-      btn.disabled = true;
-      btn.textContent = '⏳ Procesando...';
-
-      const items = cart.map(item => {
-        const p = getProduct(item.id);
-        return {
-          title: p.nombre,
-          quantity: item.qty,
-          unit_price: p.precio,
-          currency_id: 'ARS'
-        };
-      });
-
-      try {
-        // Llama a tu función serverless (Netlify / Vercel)
-        const res = await fetch('/.netlify/functions/create-preference', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items })
-        });
-        const data = await res.json();
-        if (data.init_point) {
-          window.location.href = data.init_point;
-        } else {
-          throw new Error('No se recibió el link de pago');
-        }
-      } catch (err) {
-        alert('⚠️ No se pudo conectar con Mercado Pago. Por favor usá WhatsApp o configurá el backend.\n\nError: ' + err.message);
-        btn.disabled = false;
-        btn.innerHTML = '<span>💳</span> Pagar con Mercado Pago';
-      }
-    }
-
-    /* ── NAV SCROLL ── */
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('mainNav');
-      nav.style.padding = window.scrollY > 60 ? '0.7rem 4rem' : '1.2rem 4rem';
     });
+  }, { threshold: .5 });
+  slides.forEach(s => obs.observe(s));
 
-    /* ── FAQ ICONS ── */
-    document.querySelectorAll('details').forEach(d => {
-      d.addEventListener('toggle', () => {
-        const icon = d.querySelector('.faq-icon');
-        if (icon) icon.textContent = d.open ? '−' : '+';
-      });
+  // Animate on scroll
+  const animObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.style.animation = 'fadeUp .7s ease both';
     });
-
-    /* ── SCROLL ANIMATIONS ── */
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.08 });
-
-    /* ── INIT ── */
-    renderProductos();
-    renderCombos();
-    updateCartUI();
-
-    // Animate cards after render
-    setTimeout(() => {
-      document.querySelectorAll('.prod-card, .cat-card, .test-card, .combo-row').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease, background 0.4s, border-color 0.3s';
-        observer.observe(el);
-      });
-    }, 100);
-  </script>
+  }, { threshold: .1 });
+  document.querySelectorAll('.service-card, .case-block, .metric-item, .testimonial-card, .tool-chip').forEach(el => {
+    el.style.opacity = '0';
+    animObs.observe(el);
+  });
+</script>
 </body>
 </html>
