@@ -1,1 +1,843 @@
-# Portafolio-brisacarbone
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brisa Carbone — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:     #0A0906;
+    --cream:   #F2EDE4;
+    --gold:    #B8965A;
+    --gold-lt: #D4B07A;
+    --warm:    #1C1812;
+    --mist:    #8A8070;
+    --slide-w: 1280px;
+    --slide-h: 720px;
+  }
+
+  html { font-size: 16px; background: #111; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    background: #111;
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(10,9,6,.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184,150,90,.15);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 400; letter-spacing: .12em;
+    color: var(--gold);
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--mist); text-decoration: none;
+    transition: color .3s;
+  }
+  .nav-links a:hover { color: var(--gold-lt); }
+  .nav-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    border: 1px solid var(--gold); margin: auto;
+  }
+
+  /* ── SLIDES ── */
+  .slide {
+    width: 100%; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 100px 6vw 60px;
+  }
+
+  /* ── SLIDE 1 · COVER ── */
+  .slide-cover {
+    background: var(--ink);
+    flex-direction: column;
+    text-align: center;
+  }
+  .slide-cover::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 40%, rgba(184,150,90,.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(184,150,90,.05) 0%, transparent 60%);
+  }
+  .cover-rule {
+    width: 1px; height: 80px; background: var(--gold); margin: 0 auto 32px;
+    animation: growY .8s ease forwards;
+  }
+  .cover-eyebrow {
+    font-size: .65rem; letter-spacing: .35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 28px;
+  }
+  .cover-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300; line-height: 1.0;
+    color: var(--cream); letter-spacing: .02em;
+  }
+  .cover-name em {
+    font-style: italic; color: var(--gold-lt);
+  }
+  .cover-tagline {
+    margin-top: 32px; font-size: .75rem; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--mist);
+  }
+  .cover-tagline span { color: var(--gold); margin: 0 12px; }
+  .cover-bottom {
+    position: absolute; bottom: 40px; left: 0; right: 0;
+    display: flex; justify-content: center; gap: 48px;
+  }
+  .cover-stat { text-align: center; }
+  .cover-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; color: var(--gold); display: block;
+  }
+  .cover-stat-label {
+    font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--mist); margin-top: 4px; display: block;
+  }
+  .cover-yr {
+    position: absolute; bottom: 40px; right: 6vw;
+    font-size: .65rem; letter-spacing: .2em; color: var(--mist);
+  }
+
+  /* ── SLIDE 2 · ABOUT ── */
+  .slide-about {
+    background: var(--warm);
+    gap: 8vw;
+  }
+  .slide-about::after {
+    content: '';
+    position: absolute; top: 0; right: 0; bottom: 0;
+    width: 42%;
+    background: linear-gradient(135deg, transparent 30%, rgba(184,150,90,.06) 100%);
+    pointer-events: none;
+  }
+  .about-left { flex: 1; max-width: 480px; }
+  .about-right { flex: 1; max-width: 440px; }
+  .section-label {
+    font-size: .6rem; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 14px;
+    margin-bottom: 32px;
+  }
+  .section-label::after {
+    content: ''; flex: 1; max-width: 48px; height: 1px;
+    background: var(--gold); opacity: .5;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--cream); margin-bottom: 28px;
+  }
+  .section-title em { font-style: italic; color: var(--gold-lt); }
+  .body-text {
+    font-size: .9rem; line-height: 1.9; color: #A09880;
+    margin-bottom: 24px;
+  }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .pill {
+    font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+    padding: 8px 18px; border: 1px solid rgba(184,150,90,.35);
+    color: var(--gold-lt); border-radius: 100px;
+  }
+  .gold-divider {
+    width: 48px; height: 1px; background: var(--gold); margin: 32px 0;
+  }
+  .contact-line {
+    display: flex; align-items: center; gap: 14px;
+    font-size: .78rem; color: var(--mist); margin-bottom: 14px;
+  }
+  .contact-line strong { color: var(--cream); }
+  .contact-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
+
+  /* ── SLIDE 3 · SERVICES ── */
+  .slide-services {
+    background: var(--ink);
+    flex-direction: column; gap: 52px;
+  }
+  .slide-services::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(184,150,90,.025) 0px, rgba(184,150,90,.025) 1px,
+      transparent 1px, transparent 120px
+    );
+  }
+  .services-header { text-align: center; width: 100%; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; width: 100%; max-width: 1100px;
+  }
+  .service-card {
+    background: rgba(255,255,255,.025);
+    border: 1px solid rgba(184,150,90,.12);
+    padding: 40px 28px;
+    position: relative; overflow: hidden;
+    transition: background .35s;
+  }
+  .service-card:hover { background: rgba(184,150,90,.06); }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: center;
+    transition: transform .4s ease;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; color: rgba(184,150,90,.12);
+    line-height: 1; margin-bottom: 20px; font-weight: 300;
+  }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; color: var(--cream); margin-bottom: 14px;
+    font-weight: 400;
+  }
+  .service-desc {
+    font-size: .75rem; line-height: 1.8; color: var(--mist);
+  }
+
+  /* ── SLIDE 4/5/6 · CASE STUDY ── */
+  .slide-case {
+    background: var(--warm);
+    gap: 0;
+    padding: 100px 0 60px;
+    flex-direction: column;
+  }
+  .case-header {
+    width: 100%; padding: 0 6vw;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 48px;
+  }
+  .case-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; color: rgba(184,150,90,.1);
+    font-weight: 300; line-height: 1;
+  }
+  .case-body {
+    width: 100%; padding: 0 6vw;
+    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1px; background: rgba(184,150,90,.12);
+  }
+  .case-block {
+    background: var(--warm);
+    padding: 36px 32px;
+  }
+  .case-block-label {
+    font-size: .6rem; letter-spacing: .25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+  }
+  .case-block-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; color: var(--cream); margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .case-block-text {
+    font-size: .78rem; line-height: 1.8; color: var(--mist);
+  }
+  .result-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; color: var(--gold-lt); display: block;
+    font-weight: 300; line-height: 1;
+  }
+  .result-sub {
+    font-size: .65rem; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--mist); display: block; margin-top: 8px;
+  }
+  .case-footer {
+    width: 100%; padding: 24px 6vw 0;
+    display: flex; align-items: center; gap: 12px;
+    border-top: 1px solid rgba(184,150,90,.12); margin-top: 1px;
+  }
+  .case-industry-tag {
+    font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+    padding: 6px 14px; border: 1px solid rgba(184,150,90,.3);
+    color: var(--mist); border-radius: 100px;
+  }
+
+  /* ── SLIDE 7 · TOOLS ── */
+  .slide-tools {
+    background: var(--ink);
+    flex-direction: column; gap: 52px;
+  }
+  .tools-grid {
+    display: flex; flex-wrap: wrap; gap: 2px; max-width: 900px;
+    justify-content: center;
+  }
+  .tool-chip {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 24px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(184,150,90,.15);
+    font-size: .72rem; letter-spacing: .12em; color: var(--mist);
+    transition: all .3s;
+  }
+  .tool-chip:hover {
+    background: rgba(184,150,90,.06);
+    border-color: rgba(184,150,90,.4); color: var(--cream);
+  }
+  .tool-icon {
+    width: 18px; height: 18px;
+    border: 1px solid rgba(184,150,90,.4); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tool-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
+
+  /* ── SLIDE 8 · METRICS ── */
+  .slide-metrics {
+    background: linear-gradient(145deg, #0C0A07 0%, #12100C 50%, #0A0906 100%);
+    flex-direction: column; gap: 60px;
+  }
+  .metrics-row {
+    display: flex; gap: 0;
+    border: 1px solid rgba(184,150,90,.15);
+    max-width: 1000px; width: 100%;
+  }
+  .metric-item {
+    flex: 1; padding: 48px 36px;
+    border-right: 1px solid rgba(184,150,90,.12);
+    text-align: center; position: relative;
+  }
+  .metric-item:last-child { border-right: none; }
+  .metric-item::after {
+    content: '';
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 40px; height: 2px; background: var(--gold);
+  }
+  .metric-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.6rem; font-weight: 300;
+    color: var(--cream); display: block; line-height: 1;
+  }
+  .metric-value em {
+    color: var(--gold); font-style: normal; font-size: 2rem;
+  }
+  .metric-label {
+    font-size: .6rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--mist); display: block; margin-top: 12px;
+  }
+  .industries-row {
+    display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  }
+  .industry-badge {
+    font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+    padding: 8px 20px;
+    background: rgba(184,150,90,.08);
+    border: 1px solid rgba(184,150,90,.25);
+    color: var(--gold-lt); border-radius: 100px;
+  }
+
+  /* ── SLIDE 9 · TESTIMONIALS ── */
+  .slide-testimonials {
+    background: var(--warm);
+    flex-direction: column; gap: 52px;
+  }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; max-width: 1100px; width: 100%;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,.02);
+    border: 1px solid rgba(184,150,90,.1);
+    padding: 36px 28px;
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 6rem; color: rgba(184,150,90,.15);
+    position: absolute; top: -8px; left: 20px;
+    line-height: 1;
+  }
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; font-style: italic;
+    line-height: 1.7; color: var(--cream);
+    margin-bottom: 28px; position: relative;
+  }
+  .testimonial-rule { width: 28px; height: 1px; background: var(--gold); margin-bottom: 16px; }
+  .testimonial-name {
+    font-size: .72rem; color: var(--cream); font-weight: 500; letter-spacing: .06em;
+  }
+  .testimonial-role {
+    font-size: .65rem; color: var(--mist); margin-top: 4px;
+  }
+  .stars { color: var(--gold); font-size: .8rem; letter-spacing: 3px; margin-bottom: 16px; }
+
+  /* ── SLIDE 10 · CONTACT ── */
+  .slide-contact {
+    background: var(--ink);
+    flex-direction: column;
+    text-align: center;
+  }
+  .slide-contact::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 60%, rgba(184,150,90,.07) 0%, transparent 70%);
+  }
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--cream); max-width: 640px;
+    margin: 24px auto;
+  }
+  .contact-title em { font-style: italic; color: var(--gold-lt); }
+  .contact-grid {
+    display: flex; gap: 48px; justify-content: center;
+    margin: 40px 0; flex-wrap: wrap;
+  }
+  .contact-item { text-align: center; }
+  .contact-item-label {
+    font-size: .55rem; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--mist); display: block; margin-bottom: 8px;
+  }
+  .contact-item-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; color: var(--cream);
+  }
+  .closing-line {
+    font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold); margin-top: 48px;
+  }
+  .closing-line::before, .closing-line::after {
+    content: '◈'; margin: 0 16px; opacity: .5;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes growY { from { height: 0; } to { height: 80px; } }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .animate { animation: fadeUp .7s ease both; }
+  .d1 { animation-delay: .1s; } .d2 { animation-delay: .25s; }
+  .d3 { animation-delay: .4s; } .d4 { animation-delay: .55s; }
+
+  /* ── SLIDE COUNTER ── */
+  .counter {
+    position: fixed; bottom: 28px; right: 32px; z-index: 100;
+    font-size: .6rem; letter-spacing: .2em; color: var(--mist);
+  }
+
+  /* ── PRINT / EXPORT ── */
+  @media print {
+    .nav, .counter, .print-btn { display: none !important; }
+    html, body { background: white !important; }
+    .slide { page-break-after: always; min-height: 100vh; }
+  }
+
+  /* ── PRINT BUTTON ── */
+  .print-btn {
+    position: fixed; bottom: 28px; left: 32px; z-index: 100;
+    font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+    padding: 10px 22px;
+    border: 1px solid rgba(184,150,90,.4);
+    background: transparent; color: var(--gold);
+    cursor: pointer; transition: all .3s;
+  }
+  .print-btn:hover {
+    background: rgba(184,150,90,.1);
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">BC</div>
+  <div class="nav-links">
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#casos">Casos</a>
+    <a href="#metricas">Métricas</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <div class="nav-dot"></div>
+</nav>
+
+<!-- ══════════════════════════════════════ SLIDE 1 · COVER -->
+<section class="slide slide-cover">
+  <div class="cover-rule"></div>
+  <p class="cover-eyebrow animate d1">Portfolio · Marketing Digital</p>
+  <h1 class="cover-name animate d2">
+    Brisa<br><em>Carbone</em>
+  </h1>
+  <p class="cover-tagline animate d3">
+    Estrategia <span>◈</span> Creatividad <span>◈</span> Resultados
+  </p>
+  <div class="cover-bottom animate d4">
+    <div class="cover-stat">
+      <span class="cover-stat-num">+50</span>
+      <span class="cover-stat-label">Campañas</span>
+    </div>
+    <div class="cover-stat">
+      <span class="cover-stat-num">4×</span>
+      <span class="cover-stat-label">ROAS Promedio</span>
+    </div>
+    <div class="cover-stat">
+      <span class="cover-stat-num">+20</span>
+      <span class="cover-stat-label">Clientes</span>
+    </div>
+  </div>
+  <span class="cover-yr">2025</span>
+</section>
+
+<!-- ══════════════════════════════════════ SLIDE 2 · ABOUT -->
+<section class="slide slide-about" id="sobre-mi">
+  <div class="about-left">
+    <p class="section-label">01 &nbsp;·&nbsp; Sobre mí</p>
+    <h2 class="section-title">Hago que<br>las marcas<br><em>conecten</em></h2>
+    <p class="body-text">
+      Soy especialista en marketing digital con foco en estrategia de performance,
+      contenido y gestión de campañas en Meta. Trabajo con marcas que quieren
+      crecer de manera inteligente — con datos, creatividad y propósito.
+    </p>
+    <p class="body-text">
+      Mi filosofía es simple: cada peso invertido en publicidad debe tener un
+      objetivo claro y un resultado medible. Combino análisis riguroso con
+      una mirada creativa para maximizar el retorno de cada campaña.
+    </p>
+    <div class="pill-row">
+      <span class="pill">Meta Ads</span>
+      <span class="pill">Estrategia</span>
+      <span class="pill">Contenido</span>
+      <span class="pill">eCommerce</span>
+      <span class="pill">ROAS</span>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="gold-divider"></div>
+    <div class="contact-line">
+      <span class="contact-dot"></span>
+      <span><strong>Email</strong> &nbsp;·&nbsp; brisa@tudominio.com</span>
+    </div>
+    <div class="contact-line">
+      <span class="contact-dot"></span>
+      <span><strong>Instagram</strong> &nbsp;·&nbsp; @brisacarbone</span>
+    </div>
+    <div class="contact-line">
+      <span class="contact-dot"></span>
+      <span><strong>LinkedIn</strong> &nbsp;·&nbsp; /in/brisacarbone</span>
+    </div>
+    <div class="contact-line">
+      <span class="contact-dot"></span>
+      <span><strong>WhatsApp</strong> &nbsp;·&nbsp; +54 9 11 ···· ····</span>
+    </div>
+    <div class="gold-divider" style="margin-top:36px"></div>
+    <p class="body-text" style="font-size:.75rem; color:#6A6050">
+      Basada en Buenos Aires · Trabaja con clientes en toda Latinoamérica
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ SLIDE 3 · SERVICES -->
+<section class="slide slide-services" id="servicios">
+  <div class="services-header">
+    <p class="section-label" style="justify-content:center">02 &nbsp;·&nbsp; Servicios</p>
+    <h2 class="section-title" style="text-align:center">Lo que puedo<br>hacer por tu <em>marca</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-name">Campañas Meta Ads</div>
+      <p class="service-desc">Diseño, configuración y optimización de campañas en Facebook e Instagram. Segmentación avanzada, creatividades y seguimiento de conversiones.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-name">Estrategia de Contenido</div>
+      <p class="service-desc">Planificación editorial alineada con los objetivos de negocio. Calendarios, copys, guías de estilo y storytelling de marca.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-name">Email & Automatizaciones</div>
+      <p class="service-desc">Flujos de email marketing y automatizaciones para nutrir leads, recuperar carritos y fidelizar clientes.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-name">Análisis & ROAS</div>
+      <p class="service-desc">Configuración de píxeles, eventos de conversión y dashboards personalizados para medir el impacto real de cada inversión.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ SLIDE 4 · CASE 1 -->
+<section class="slide slide-case" id="casos">
+  <div class="case-header">
+    <div>
+      <p class="section-label">03 &nbsp;·&nbsp; Caso de Éxito</p>
+      <h2 class="section-title" style="margin-bottom:0">Fan Fungi<br><em>Aceite de Orégano</em></h2>
+    </div>
+    <span class="case-tag">01</span>
+  </div>
+  <div class="case-body">
+    <div class="case-block">
+      <p class="case-block-label">Cliente</p>
+      <p class="case-block-title">Fan Fungi</p>
+      <p class="case-block-text">Tienda online especializada en productos naturales. Venta directa via Tiendanube con foco en aceite de orégano premium.</p>
+    </div>
+    <div class="case-block">
+      <p class="case-block-label">Objetivo</p>
+      <p class="case-block-title">Aumentar ventas online</p>
+      <p class="case-block-text">Generar tráfico calificado a la tienda y convertir visitas en compras mediante campañas de performance en Meta.</p>
+    </div>
+    <div class="case-block">
+      <p class="case-block-label">Estrategia</p>
+      <p class="case-block-title">Full Funnel Meta</p>
+      <p class="case-block-text">Configuración del Píxel + eventos de conversión · campañas de awareness, consideración y conversión · creatividades A/B.</p>
+    </div>
+    <div class="case-block">
+      <p class="case-block-label">Resultados</p>
+      <span class="result-big">4×</span>
+      <span class="result-sub">ROAS obtenido</span>
+      <p class="case-block-text" style="margin-top:12px">Tracking de Purchase events configurado. Optimización continua de campañas.</p>
+    </div>
+  </div>
+  <div class="case-footer">
+    <span class="case-industry-tag">eCommerce</span>
+    <span class="case-industry-tag">Productos Naturales</span>
+    <span class="case-industry-tag">Meta Ads</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ SLIDE 5 · CASE 2 -->
+<section class="slide slide-case">
+  <div class="case-header">
+    <div>
+      <p class="section-label">04 &nbsp;·&nbsp; Caso de Éxito</p>
+      <h2 class="section-title" style="margin-bottom:0">Tu Próximo<br><em>Cliente</em></h2>
+    </div>
+    <span class="case-tag">02</span>
+  </div>
+  <div class="case-body">
+    <div class="case-block">
+      <p class="case-block-label">Cliente</p>
+      <p class="case-block-title">Nombre del proyecto</p>
+      <p class="case-block-text">Describí el rubro, el tamaño y el contexto del cliente. Cuanto más específico, más creíble y valioso resulta el caso.</p>
+    </div>
+    <div class="case-block">
+      <p class="case-block-label">Objetivo</p>
+      <p class="case-block-title">¿Qué buscaban?</p>
+      <p class="case-block-text">Describí el desafío o problema que tenía el cliente antes de trabajar juntos. El punto de partida importa.</p>
+    </div>
+    <div class="case-block">
+      <p class="case-block-label">Estrategia</p>
+      <p class="case-block-title">¿Cómo lo resolviste?</p>
+      <p class="case-block-text">Detalles de las acciones implementadas · plataformas · creatividades · segmentación · optimizaciones.</p>
+    </div>
+    <div class="case-block">
+      <p class="case-block-label">Resultados</p>
+      <span class="result-big">+XX%</span>
+      <span class="result-sub">Métrica clave</span>
+      <p class="case-block-text" style="margin-top:12px">Agregá el resultado más impactante. Los números hablan solos.</p>
+    </div>
+  </div>
+  <div class="case-footer">
+    <span class="case-industry-tag">Industria</span>
+    <span class="case-industry-tag">Plataforma</span>
+    <span class="case-industry-tag">Tipo de campaña</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ SLIDE 6 · CASE 3 -->
+<section class="slide slide-case">
+  <div class="case-header">
+    <div>
+      <p class="section-label">05 &nbsp;·&nbsp; Caso de Éxito</p>
+      <h2 class="section-title" style="margin-bottom:0">Tu Próximo<br><em>Caso</em></h2>
+    </div>
+    <span class="case-tag">03</span>
+  </div>
+  <div class="case-body">
+    <div class="case-block">
+      <p class="case-block-label">Cliente</p>
+      <p class="case-block-title">Nombre del proyecto</p>
+      <p class="case-block-text">Describí el rubro, el tamaño y el contexto del cliente. Cuanto más específico, más creíble y valioso resulta el caso.</p>
+    </div>
+    <div class="case-block">
+      <p class="case-block-label">Objetivo</p>
+      <p class="case-block-title">¿Qué buscaban?</p>
+      <p class="case-block-text">Describí el desafío o problema que tenía el cliente antes de trabajar juntos. El punto de partida importa.</p>
+    </div>
+    <div class="case-block">
+      <p class="case-block-label">Estrategia</p>
+      <p class="case-block-title">¿Cómo lo resolviste?</p>
+      <p class="case-block-text">Detalles de las acciones implementadas · plataformas · creatividades · segmentación · optimizaciones.</p>
+    </div>
+    <div class="case-block">
+      <p class="case-block-label">Resultados</p>
+      <span class="result-big">+XX%</span>
+      <span class="result-sub">Métrica clave</span>
+      <p class="case-block-text" style="margin-top:12px">Agregá el resultado más impactante. Los números hablan solos.</p>
+    </div>
+  </div>
+  <div class="case-footer">
+    <span class="case-industry-tag">Industria</span>
+    <span class="case-industry-tag">Plataforma</span>
+    <span class="case-industry-tag">Tipo de campaña</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ SLIDE 7 · TOOLS -->
+<section class="slide slide-tools">
+  <div>
+    <p class="section-label" style="justify-content:center">06 &nbsp;·&nbsp; Herramientas</p>
+    <h2 class="section-title" style="text-align:center">Mi <em>stack</em><br>de trabajo</h2>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Meta Ads Manager</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Facebook Business Suite</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Meta Pixel & Conversions API</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Tiendanube</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Google Analytics 4</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Google Tag Manager</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Canva</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Notion</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Mailchimp / Klaviyo</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Later / Buffer</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Windsor.ai</div>
+    <div class="tool-chip"><div class="tool-icon"><div class="tool-dot"></div></div>Looker Studio</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ SLIDE 8 · METRICS -->
+<section class="slide slide-metrics" id="metricas">
+  <div>
+    <p class="section-label" style="justify-content:center">07 &nbsp;·&nbsp; Métricas Globales</p>
+    <h2 class="section-title" style="text-align:center">Resultados que<br><em>hablan solos</em></h2>
+  </div>
+  <div class="metrics-row">
+    <div class="metric-item">
+      <span class="metric-value">+50</span>
+      <span class="metric-label">Campañas gestionadas</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-value">4<em>×</em></span>
+      <span class="metric-label">ROAS promedio</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-value">+20</span>
+      <span class="metric-label">Clientes activos</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-value">$XX<em>k</em></span>
+      <span class="metric-label">Inversión manejada</span>
+    </div>
+  </div>
+  <div class="industries-row">
+    <span class="industry-badge">eCommerce</span>
+    <span class="industry-badge">Salud & Bienestar</span>
+    <span class="industry-badge">Gastronomía</span>
+    <span class="industry-badge">Moda</span>
+    <span class="industry-badge">Servicios</span>
+    <span class="industry-badge">Educación</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ SLIDE 9 · TESTIMONIALS -->
+<section class="slide slide-testimonials">
+  <div>
+    <p class="section-label" style="justify-content:center">08 &nbsp;·&nbsp; Testimonios</p>
+    <h2 class="section-title" style="text-align:center">Lo que dicen<br>mis <em>clientes</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Brisa transformó completamente nuestra presencia en redes. Las campañas empezaron a dar resultados reales desde el primer mes.</p>
+      <div class="testimonial-rule"></div>
+      <p class="testimonial-name">Nombre del Cliente</p>
+      <p class="testimonial-role">Fundador · Empresa</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">El nivel de análisis y dedicación es increíble. No solo ejecuta, sino que entiende el negocio y propone estrategias que funcionan.</p>
+      <div class="testimonial-rule"></div>
+      <p class="testimonial-name">Nombre del Cliente</p>
+      <p class="testimonial-role">Dueña · Tienda online</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Gracias a Brisa pudimos escalar las ventas de nuestro ecommerce manteniendo un ROAS rentable. La recomiendo sin dudarlo.</p>
+      <div class="testimonial-rule"></div>
+      <p class="testimonial-name">Nombre del Cliente</p>
+      <p class="testimonial-role">CEO · Marca DTC</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ SLIDE 10 · CONTACT -->
+<section class="slide slide-contact" id="contacto">
+  <p class="section-label" style="justify-content:center; position:relative">09 &nbsp;·&nbsp; Contacto</p>
+  <h2 class="contact-title">
+    ¿Listo para hacer<br>crecer tu <em>marca?</em>
+  </h2>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <span class="contact-item-label">Email</span>
+      <span class="contact-item-value">brisa@tudominio.com</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-item-label">Instagram</span>
+      <span class="contact-item-value">@brisacarbone</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-item-label">LinkedIn</span>
+      <span class="contact-item-value">/in/brisacarbone</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-item-label">WhatsApp</span>
+      <span class="contact-item-value">+54 9 11 ···· ····</span>
+    </div>
+  </div>
+  <p class="closing-line">Estrategia con propósito · Resultados con datos</p>
+</section>
+
+<div class="counter" id="counter">— BC · Portfolio 2025</div>
+
+<button class="print-btn" onclick="window.print()">↓ Exportar PDF</button>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const labels = ['01 · Portada','02 · Sobre mí','03 · Servicios','04 · Caso 1','05 · Caso 2','06 · Caso 3','07 · Herramientas','08 · Métricas','09 · Testimonios','10 · Contacto'];
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = Array.from(slides).indexOf(e.target);
+        counter.textContent = labels[idx] + ' / 10';
+      }
+    });
+  }, { threshold: .5 });
+  slides.forEach(s => obs.observe(s));
+
+  const animObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.style.animation = 'fadeUp .7s ease both';
+    });
+  }, { threshold: .1 });
+  document.querySelectorAll('.service-card, .case-block, .metric-item, .testimonial-card, .tool-chip').forEach(el => {
+    el.style.opacity = '0';
+    animObs.observe(el);
+  });
+</script>
+</body>
+</html>
